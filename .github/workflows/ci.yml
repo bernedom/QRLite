@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+jobs:
+  build-desktop:
+    runs-on: ubuntu-22.04
+    container:
+      image: bernedom/hardrockbuilder:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Configure
+        run: cmake --preset ci-ninja-desktop-debug
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --output-on-failure
+        working-directory: build
+
+  build-android:
+    runs-on: ubuntu-22.04
+    container:
+      image: bernedom/hardrockbuilder:latest
+
+    strategy:
+      matrix:
+        arch: [arm64-v8a, armeabi-v7a, x86_64]
+        build_type: [debug, release]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Configure
+        run: cmake --preset ci-ninja-android-${{ matrix.arch }}-${{ matrix.build_type }}
+
+      - name: Build
+        run: cmake --build build_android
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-${{ matrix.build_type }}-${{ matrix.arch }}
+          path: ./build_android/SimpleCollage/android-build/SimpleCollage.apk
+          retention-days: 7
