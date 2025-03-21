@@ -1,0 +1,34 @@
+{
+    "image": "bernedom/hardrockbuilder:0052e5f2e8f7306b69755a0985a9123d84d71de8",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "vadimcn.vscode-lldb",
+                "cheshirekow.cmake-format",
+                "ms-vscode.cpptools-extension-pack",
+                "eamodio.gitlens",
+                "adelphes.android-dev-ext",
+                "github.vscode-github-actions",
+                "josetr.cmake-language-support-vscode",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "theqtcompany.qt-qml",
+                "Delgan.qml-format"
+            ]
+        }
+    },
+    "remoteEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}"
+    },
+    "remoteUser": "builder",
+    "mounts": [
+        "type=bind,source=/dev/bus/usb,target=/dev/bus/usb"
+    ],
+    "runArgs": [
+        "--device=/dev/dri:/dev/dri",
+        "--net=host",
+        "--cpus=8",
+        "--privileged"
+    ]
+}

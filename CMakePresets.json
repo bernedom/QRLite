@@ -1,0 +1,241 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "ccache-env",
+            "hidden": true,
+            "environment": {
+                "CCACHE_BASEDIR": "${sourceDir}",
+                "CCACHE_SLOPPINESS": "pch_defines,time_macros"
+            }
+        },
+        {
+            "name": "conan-dependency-provider",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "${sourceDir}/cmake-conan/conan_provider.cmake"
+            }
+        },
+        {
+            "name": "gcc-compiler-flags",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-Wall -Werror"
+            }
+        },
+        {
+            "name": "clang-compiler-flags",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-Wall -Werror"
+            }
+        },
+        {
+            "name": "msvc-compiler-flags",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "/W4 /WX"
+            }
+        },
+        {
+            "name": "android-ndk",
+            "hidden": true,
+            "toolchainFile": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+            "cacheVariables": {
+                "ANDROID_PLATFORM": "31",
+                "ANDROID_SDK_ROOT": "/opt/android",
+                "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE": "BOTH",
+                "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "BOTH",
+                "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "BOTH"
+            },
+            "binaryDir": "${sourceDir}/build_android"
+        },
+        {
+            "name": "android-armeabi-v7a",
+            "hidden": true,
+            "inherits": [
+                "android-ndk"
+            ],
+            "cacheVariables": {
+                "ANDROID_ABI": "armeabi-v7a"
+            }
+        },
+        {
+            "name": "android-arm64-v8a",
+            "hidden": true,
+            "inherits": [
+                "android-ndk"
+            ],
+            "cacheVariables": {
+                "ANDROID_ABI": "arm64-v8a"
+            }
+        },
+        {
+            "name": "android-x86_64",
+            "hidden": true,
+            "inherits": [
+                "android-ndk"
+            ],
+            "cacheVariables": {
+                "ANDROID_ABI": "x86_64"
+            }
+        },
+        {
+            "name": "Qt-desktop",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/gcc_64/"
+            },
+            "binaryDir": "${sourceDir}/build"
+        },
+        {
+            "name": "Qt-android-armeabi-v7a",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_armv7/"
+            },
+            "environment": {
+                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+            }
+        },
+        {
+            "name": "Qt-android-arm64-v8a",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_arm64_v8a/"
+            },
+            "environment": {
+                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+            }
+        },
+        {
+            "name": "Qt-android-x86_64",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_x86_64/"
+            },
+            "environment": {
+                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+            }
+        },
+        {
+            "name": "ci-ninja",
+            "displayName": "Ninja",
+            "description": "build using Ninja generator",
+            "inherits": [
+                "ccache-env"
+            ],
+            "generator": "Ninja",
+            "hidden": true
+        },
+        {
+            "name": "ci-ninja-desktop-debug",
+            "displayName": "Ninja Debug",
+            "inherits": [
+                "Qt-desktop",
+                "ci-ninja",
+                "gcc-compiler-flags",
+                "conan-dependency-provider"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "ci-ninja-desktop-release",
+            "displayName": "Ninja Release",
+            "inherits": [
+                "Qt-desktop",
+                "ci-ninja",
+                "gcc-compiler-flags",
+                "conan-dependency-provider"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "ci-ninja-android-armeabi-v7a-debug",
+            "displayName": "Ninja Android armeabi-v7a Debug",
+            "inherits": [
+                "ci-ninja",
+                "android-armeabi-v7a",
+                "clang-compiler-flags",
+                "Qt-android-armeabi-v7a"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "ci-ninja-android-armeabi-v7a-release",
+            "displayName": "Ninja Android armeabi-v7a Release",
+            "inherits": [
+                "ci-ninja",
+                "android-armeabi-v7a",
+                "clang-compiler-flags",
+                "Qt-android-armeabi-v7a"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "ci-ninja-android-arm64-v8a-debug",
+            "displayName": "Ninja Android arm64-v8a Debug",
+            "inherits": [
+                "Qt-android-arm64-v8a",
+                "ci-ninja",
+                "android-arm64-v8a",
+                "clang-compiler-flags"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "ci-ninja-android-arm64-v8a-release",
+            "displayName": "Ninja Android arm64-v8a Release",
+            "inherits": [
+                "Qt-android-arm64-v8a",
+                "ci-ninja",
+                "android-arm64-v8a",
+                "clang-compiler-flags"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "ci-ninja-android-x86_64-debug",
+            "displayName": "Ninja Android x86_64 Debug",
+            "inherits": [
+                "Qt-android-x86_64",
+                "ci-ninja",
+                "android-x86_64",
+                "clang-compiler-flags"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "ci-ninja-android-x86_64-release",
+            "displayName": "Ninja Android x86_64 Release",
+            "inherits": [
+                "Qt-android-x86_64",
+                "ci-ninja",
+                "android-x86_64",
+                "clang-compiler-flags"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ]
+}
