@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
   app.setApplicationName("SimpleCollage");
   QQmlApplicationEngine qmlEngine;
 
- // qmlEngine.load(QUrl("qrc:/main.qml"));
+  qmlEngine.load(QUrl("qrc:/main.qml"));
 
   // HardRock::Game game;
 
