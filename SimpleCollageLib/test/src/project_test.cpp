@@ -6,3 +6,9 @@ TEST_CASE("A new project has an empty image", "[Project]")
     SimpleCollage::Project project;
     REQUIRE(project.getImage().isNull());
 }
+
+TEST_CASE("Adding an image to a project returns the same image", "[Project]") {
+  SimpleCollage::Project project;
+  project.addImage(":/images/test.png");
+  REQUIRE_FALSE(project.getImage().isNull());
+}

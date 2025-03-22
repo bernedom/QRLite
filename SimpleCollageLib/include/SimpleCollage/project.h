@@ -1,18 +1,14 @@
-#pragma once 
+#pragma once
 
 #include <QtGui/QImage>
 
-namespace SimpleCollage
-{
-    class Project
-    {
-    public:
-        void addImage(const std::string& path);
-        const QImage& getImage() const;
+namespace SimpleCollage {
+class Project {
+public:
+  void addImage(const std::string &path);
+  const QImage &getImage() const;
 
-    private:
-        QImage _image;
-
-        
-    };
-}
+private:
+  QImage _image;
+};
+} // namespace SimpleCollage
