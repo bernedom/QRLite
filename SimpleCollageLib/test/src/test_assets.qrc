@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/checkerboard_64x64.jpg</file>
+        <file>images/corruped_image.xx</file>
     </qresource>
 </RCC>

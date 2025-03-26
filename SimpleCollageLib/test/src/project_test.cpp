@@ -21,3 +21,11 @@ TEST_CASE("Passing a nonexisting image to addImage throws an exception",
   QFile file(":/images/nonexisting.jpg");
   REQUIRE_THROWS(project.addImage(file));
 }
+
+TEST_CASE("Passing a file that is not an image to addImage throws an exception",
+          "[Project]") {
+  SimpleCollage::Project project;
+  QFile file(":/images/corruped_image.xx");
+  assert(file.exists());
+  REQUIRE_THROWS(project.addImage(file));
+}
