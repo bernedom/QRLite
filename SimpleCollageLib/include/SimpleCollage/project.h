@@ -2,10 +2,12 @@
 
 #include <QtGui/QImage>
 
+class QFile;
+
 namespace SimpleCollage {
 class Project {
 public:
-  void addImage(const std::string &path);
+  void addImage(const QFile &path);
   const QImage &getImage() const;
 
 private:

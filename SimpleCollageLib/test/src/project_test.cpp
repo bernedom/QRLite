@@ -1,6 +1,8 @@
 #include <SimpleCollage/project.h>
 #include <catch2/catch_test_macros.hpp>
 
+#include <QFile>
+
 TEST_CASE("A new project has an empty image", "[Project]") {
   SimpleCollage::Project project;
   REQUIRE(project.getImage().isNull());
@@ -8,12 +10,14 @@ TEST_CASE("A new project has an empty image", "[Project]") {
 
 TEST_CASE("Adding an image to a project returns the same image", "[Project]") {
   SimpleCollage::Project project;
-  project.addImage(":/images/checkerboard_64x64.jpg");
+  QFile file(":/images/checkerboard_64x64.jpg");
+  project.addImage(file);
   REQUIRE_FALSE(project.getImage().isNull());
 }
 
 TEST_CASE("Passing a nonexisting image to addImage throws an exception",
           "[Project]") {
   SimpleCollage::Project project;
-  REQUIRE_THROWS(project.addImage(":/images/nonexisting.jpg"));
+  QFile file(":/images/nonexisting.jpg");
+  REQUIRE_THROWS(project.addImage(file));
 }

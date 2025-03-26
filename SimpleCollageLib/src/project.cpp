@@ -1,14 +1,16 @@
 #include <SimpleCollage/project.h>
 
+#include <QFile>
 #include <QImage>
 
 namespace SimpleCollage {
-void Project::addImage(const std::string &path) {
+void Project::addImage(const QFile &path) {
 
-  QImage image(QString::fromStdString(path));
-  if (image.isNull()) {
+  if (!path.exists()) {
     throw std::invalid_argument("The image file does not exist.");
   }
+  QImage image(path.fileName());
+
   _image = image;
 }
 
