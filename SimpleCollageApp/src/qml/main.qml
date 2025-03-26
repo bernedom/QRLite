@@ -8,15 +8,39 @@ Window {
     height: 480
     title: "SimpleCollage"
 
-    property var game
-    
-
     Item {
         id: root
         focus: true
         anchors.fill: parent
 
-        signal startGame()
+        Image {
+            id: image
+            source: "image://collage/collage"
+            anchors.centerIn: parent
+            width: 200
+            height: 400
+        }
+        
+        // Rectangle {
+        //     id: generate
+        //     width: 200
+        //     height: 200
+        //     color: "blue"
+        //     anchors.centerIn: parent
+
+        //     Text {
+        //         id: name
+        //         text: qsTr("generate collage")
+        //     }
+
+        //     MouseArea {
+        //         anchors.fill: parent
+        //         onClicked: {
+        //             console.log("generate collage")
+        //         }
+        //     }
+        // }
+        
 
         Keys.onPressed: event => {
             if (event.key === Qt.Key_Escape) {

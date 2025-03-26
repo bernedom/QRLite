@@ -5,6 +5,6 @@ set(CMAKE_AUTORCC ON)
 
 qt_add_executable(SimpleCollage)
 
-target_sources(SimpleCollage PRIVATE src/main.cpp src/qml/qml.qrc)
+target_sources(SimpleCollage PRIVATE src/main.cpp src/qml/qml.qrc src/CollageImageProvider.cpp)
 target_link_libraries(SimpleCollage PRIVATE Qt6::Core Qt6::Gui Qt6::Quick SimpleCollageLib)
 target_compile_features(SimpleCollage PRIVATE cxx_std_20)

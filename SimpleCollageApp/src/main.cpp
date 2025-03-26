@@ -1,8 +1,10 @@
+#include "CollageImageProvider.h"
 #include <QtCore/QObject>
 #include <QtGui/QGuiApplication>
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
 
+#include <SimpleCollage/project.h>
 
 int main(int argc, char **argv) {
 
@@ -12,10 +14,10 @@ int main(int argc, char **argv) {
 
   qmlEngine.load(QUrl("qrc:/main.qml"));
 
-  // HardRock::Game game;
-
-  // qmlEngine.rootObjects().first()->setProperty("game",
-  //                                              QVariant::fromValue(&game));
+  SimpleCollage::Project project;
+  qmlEngine.rootContext()->setContextProperty("project", &project);
+  CollageImageProvider imageProvider(project);
+  qmlEngine.addImageProvider("collage", &imageProvider);
 
   return app.exec();
 }
