@@ -17,8 +17,8 @@ Window {
             id: image
             source: "image://collage/collage"
             anchors.centerIn: parent
-            width: 200
-            height: 400
+            width: 128
+            height: 64
         }
         
         // Rectangle {
