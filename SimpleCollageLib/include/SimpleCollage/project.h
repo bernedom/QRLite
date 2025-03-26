@@ -8,9 +8,13 @@ namespace SimpleCollage {
 class Project {
 public:
   void addImage(const QFile &path);
-  const QImage &getImage() const;
+  const QImage &getImage() const { return _collage; };
 
 private:
-  QImage _image;
+  void createCollage();
+
+private:
+  QList<QImage> _images;
+  QImage _collage;
 };
 } // namespace SimpleCollage
