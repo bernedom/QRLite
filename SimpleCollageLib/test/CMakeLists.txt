@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 include(Catch)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOMOC ON)
 
 add_executable(SimpleCollageTests)
 target_link_libraries(SimpleCollageTests PRIVATE SimpleCollage::SimpleCollageLib Catch2::Catch2WithMain)

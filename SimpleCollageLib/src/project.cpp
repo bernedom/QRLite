@@ -17,6 +17,7 @@ void Project::addImage(const QFile &path) {
 
   _images.append(image);
   createCollage();
+  emit imageChanged();
 }
 
 void Project::createCollage() {
