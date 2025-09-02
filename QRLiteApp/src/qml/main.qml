@@ -13,35 +13,6 @@ Window {
         focus: true
         anchors.fill: parent
 
-        Image {
-            id: image
-            source: "image://collage/collage"
-            anchors.centerIn: parent
-            width: 128
-            height: 64
-        }
-        
-        // Rectangle {
-        //     id: generate
-        //     width: 200
-        //     height: 200
-        //     color: "blue"
-        //     anchors.centerIn: parent
-
-        //     Text {
-        //         id: name
-        //         text: qsTr("generate collage")
-        //     }
-
-        //     MouseArea {
-        //         anchors.fill: parent
-        //         onClicked: {
-        //             console.log("generate collage")
-        //         }
-        //     }
-        // }
-        
-
         Keys.onPressed: event => {
             if (event.key === Qt.Key_Escape) {
                 Qt.quit();

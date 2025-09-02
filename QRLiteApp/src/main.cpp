@@ -13,13 +13,6 @@ int main(int argc, char **argv) {
   app.setApplicationName("QRLite");
   QQmlApplicationEngine qmlEngine;
 
-  QRLite::Project project;
-  project.addImage(QFile(":/images/images/checkerboard_64x64.jpg"));
-  project.addImage(QFile(":/images/images/checkerboard_64x64.jpg"));
-  qmlEngine.rootContext()->setContextProperty("project", &project);
-  CollageImageProvider imageProvider(project);
-  qmlEngine.addImageProvider("collage", &imageProvider);
-
   qmlEngine.load(QUrl("qrc:/main.qml"));
 
   return app.exec();

@@ -2,7 +2,4 @@
     <qresource prefix="/">
         <file>main.qml</file>
     </qresource>
-    <qresource prefix="/images">
-        <file>images/checkerboard_64x64.jpg</file>
-    </qresource>
 </RCC>
