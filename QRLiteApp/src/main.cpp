@@ -5,15 +5,15 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
 
-#include <SimpleCollage/project.h>
+#include <QRLite/project.h>
 
 int main(int argc, char **argv) {
 
   QGuiApplication app(argc, argv);
-  app.setApplicationName("SimpleCollage");
+  app.setApplicationName("QRLite");
   QQmlApplicationEngine qmlEngine;
 
-  SimpleCollage::Project project;
+  QRLite::Project project;
   project.addImage(QFile(":/images/images/checkerboard_64x64.jpg"));
   project.addImage(QFile(":/images/images/checkerboard_64x64.jpg"));
   qmlEngine.rootContext()->setContextProperty("project", &project);

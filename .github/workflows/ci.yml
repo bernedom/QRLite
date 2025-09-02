@@ -61,5 +61,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apk-${{ matrix.build_type }}-${{ matrix.arch }}
-          path: ./build_android/SimpleCollage/android-build/SimpleCollage.apk
+          path: ./build_android/QRLite/android-build/QRLite.apk
           retention-days: 7

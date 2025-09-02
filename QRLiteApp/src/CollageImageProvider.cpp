@@ -4,7 +4,7 @@
 #include <qpixmap.h>
 
 CollageImageProvider::CollageImageProvider(
-    const SimpleCollage::Project &project)
+    const QRLite::Project &project)
     : QQuickImageProvider(QQuickImageProvider::Pixmap), project(project) {}
 
 CollageImageProvider::~CollageImageProvider() {}

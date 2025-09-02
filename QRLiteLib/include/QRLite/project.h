@@ -5,7 +5,7 @@
 
 class QFile;
 
-namespace SimpleCollage {
+namespace QRLite {
 class Project : public QObject {
   Q_OBJECT
 public:
@@ -24,4 +24,4 @@ private:
   QList<QImage> _images;
   QImage _collage;
 };
-} // namespace SimpleCollage
+} // namespace QRLite

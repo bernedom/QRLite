@@ -1,10 +1,10 @@
-#include <SimpleCollage/project.h>
+#include <QRLite/project.h>
 
 #include <QFile>
 #include <QImage>
 #include <QPainter>
 
-namespace SimpleCollage {
+namespace QRLite {
 void Project::addImage(const QFile &path) {
 
   if (!path.exists()) {
@@ -45,4 +45,4 @@ void Project::createCollage() {
   }
 }
 
-} // namespace SimpleCollage
+} // namespace QRLite
