@@ -19,7 +19,8 @@
         }
     },
     "remoteEnv": {
-        "DISPLAY": "${localEnv:DISPLAY}"
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "LIBGL_ALWAYS_SOFTWARE": "1"
     },
     "remoteUser": "builder",
     "mounts": [
