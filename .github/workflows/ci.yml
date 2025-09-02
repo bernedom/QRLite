@@ -15,7 +15,7 @@ jobs:
   build-desktop:
     runs-on: ubuntu-22.04
     container:
-      image: bernedom/hardrockbuilder:latest
+      image: bernedom/qtandroidbuilder:latest
 
     steps:
       - name: Checkout code
@@ -37,7 +37,7 @@ jobs:
   build-android:
     runs-on: ubuntu-22.04
     container:
-      image: bernedom/hardrockbuilder:latest
+      image: bernedom/qtandroidbuilder:latest
 
     strategy:
       matrix:
