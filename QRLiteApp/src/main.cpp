@@ -1,11 +1,8 @@
-#include "CollageImageProvider.h"
 #include <QtCore/QFile>
 #include <QtCore/QObject>
 #include <QtGui/QGuiApplication>
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
-
-#include <QRLite/project.h>
 
 int main(int argc, char **argv) {
 
