@@ -1,5 +1,5 @@
-#include <catch2/catch_test_macros.hpp>
 #include <QRLite/scanner.h>
+#include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("Empty image returns empty string", "[Scanner]") {
   QRLite::Scanner scanner;
