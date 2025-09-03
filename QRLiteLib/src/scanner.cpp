@@ -21,8 +21,6 @@ QString Scanner::scan(const QImage &image) {
   if (rgbImage.isNull()) {
     return QString("Failed to convert image to RGB format");
   }
-  qDebug() << "Converted image to RGB format" << rgbImage.height() << "x"
-           << rgbImage.width();
 
   const ZXing::ImageView imageView(rgbImage.bits(), rgbImage.width(),
                                    rgbImage.height(), ZXing::ImageFormat::RGB,
@@ -40,10 +38,9 @@ QString Scanner::scan(const QImage &image) {
   QStringList messages;
   for (const auto &result : results) {
     if (!result.isValid()) {
-      qDebug() << "Result is not valid:" << result.error().msg().c_str();
+      messages << "Invalid QR code";
       continue;
     }
-    qDebug() << "Message " << result.text().c_str();
     messages << QString::fromStdString(result.text());
   }
 
