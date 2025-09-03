@@ -43,6 +43,7 @@ QString Scanner::scan(const QImage &image) {
       qDebug() << "Result is not valid:" << result.error().msg().c_str();
       continue;
     }
+    qDebug() << "Message " << result.text().c_str();
     messages << QString::fromStdString(result.text());
   }
 

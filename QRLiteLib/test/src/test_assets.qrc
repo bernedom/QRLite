@@ -3,5 +3,6 @@
         <file>images/checkerboard_64x64.jpg</file>
         <file>images/corruped_image.xx</file>
         <file>images/valid_qr_code_qrlite.png</file>
+        <file>images/test.png</file>
     </qresource>
 </RCC>

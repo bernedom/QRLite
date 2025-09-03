@@ -9,8 +9,8 @@ TEST_CASE("Empty image returns empty string", "[Scanner]") {
 
 TEST_CASE("Scanning a valid QR Code returns the message", "[Scanner]") {
   QRLite::Scanner scanner;
-  const QImage sample_image(":/images/valid_qr_code_qrlite.png");
+  const QImage sample_image(":/images/test.png");
   REQUIRE_FALSE(sample_image.isNull());
   const auto result = scanner.scan(sample_image);
-  REQUIRE(result.toStdString() == "QRLite");
+  REQUIRE(result.toStdString() == "I have the best words.");
 }
