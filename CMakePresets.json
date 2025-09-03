@@ -53,7 +53,10 @@
                 "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "BOTH",
                 "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "BOTH"
             },
-            "binaryDir": "${sourceDir}/build_android"
+            "binaryDir": "${sourceDir}/build_android",
+            "inherits": [
+                "conan-dependency-provider"
+            ]
         },
         {
             "name": "android-armeabi-v7a",
@@ -166,7 +169,8 @@
                 "ci-ninja",
                 "android-armeabi-v7a",
                 "clang-compiler-flags",
-                "Qt-android-armeabi-v7a"
+                "Qt-android-armeabi-v7a",
+                "conan-dependency-provider"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
