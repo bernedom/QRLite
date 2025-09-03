@@ -7,7 +7,7 @@ add_library(QRLiteLib STATIC)
 add_library(QRLite::QRLiteLib ALIAS QRLiteLib)
 target_include_directories(QRLiteLib PUBLIC include)
 target_sources(QRLiteLib PRIVATE src/scanner.cpp)
-target_link_libraries(QRLiteLib PUBLIC Qt6::Gui Qt6::Core)
+target_link_libraries(QRLiteLib PUBLIC Qt6::Gui Qt6::Core ZXing::ZXing)
 
 if(Catch2_FOUND AND BUILD_TESTING)
   add_subdirectory(test)
