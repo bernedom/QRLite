@@ -1,13 +1,16 @@
-#pragma once 
+#pragma once
 
 #include <QImage>
+#include <QObject>
 #include <QString>
 
-namespace QRLite{
+namespace QRLite {
 
-    class Scanner {
-    public:
-      
-        QString scan(const QImage& image);
-    };
-}
+class Scanner : public QObject {
+  Q_OBJECT
+public:
+  explicit Scanner(QObject *parent = nullptr) : QObject(parent) {};
+  ~Scanner() override {};
+  Q_INVOKABLE QString scan(const QImage &image);
+};
+} // namespace QRLite

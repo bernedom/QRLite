@@ -48,6 +48,13 @@ Window {
                 font.bold: true
                 font.pointSize: 18
             }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    console.log("Scan button clicked")
+                }
+            }
         }
 
         Rectangle {
@@ -62,6 +69,8 @@ Window {
             anchors.topMargin: 40
 
             Text {
+                id: scanResultText
+                objectName: "scanResultText"
                 text: "abracadabra"
                 anchors.centerIn: parent
                 color: "black"

@@ -6,7 +6,7 @@ set(CMAKE_AUTORCC ON)
 add_library(QRLiteLib STATIC)
 add_library(QRLite::QRLiteLib ALIAS QRLiteLib)
 target_include_directories(QRLiteLib PUBLIC include)
-target_sources(QRLiteLib PRIVATE src/scanner.cpp)
+target_sources(QRLiteLib PRIVATE src/scanner.cpp include/QRLite/scanner.h)
 target_link_libraries(QRLiteLib PUBLIC Qt6::Gui Qt6::Core ZXing::ZXing)
 
 if(Catch2_FOUND AND BUILD_TESTING)
