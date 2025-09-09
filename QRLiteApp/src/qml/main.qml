@@ -52,13 +52,13 @@ Window {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    console.log("Scan button clicked")
+                    scanResultText.text = scanner.scan("qrc:/images/images/test.png");
                 }
             }
         }
 
         Rectangle {
-            width: 200
+            width: parent.width - 40
             height: 40
             color: "transparent"
             border.color: "black"

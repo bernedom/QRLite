@@ -11,6 +11,7 @@ class Scanner : public QObject {
 public:
   explicit Scanner(QObject *parent = nullptr) : QObject(parent) {};
   ~Scanner() override {};
-  Q_INVOKABLE QString scan(const QImage &image);
+  Q_INVOKABLE QString scan(const QString &imagePath) const;
+  QString scan(const QImage &image) const;
 };
 } // namespace QRLite

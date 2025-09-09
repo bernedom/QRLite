@@ -10,7 +10,15 @@
 
 namespace QRLite {
 
-QString Scanner::scan(const QImage &image) {
+QString Scanner::scan(const QString &imagePath) const {
+  QImage image;
+  if (!image.load(imagePath)) {
+    return QString("Failed to load image: %1").arg(imagePath);
+  }
+  return scan(image);
+}
+
+QString Scanner::scan(const QImage &image) const {
 
   if (image.isNull()) {
     return QString();
