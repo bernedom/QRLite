@@ -20,3 +20,10 @@ TEST_CASE("Scan an image using path", "[Scanner]") {
   const auto result = scanner.scan(":/images/test.png");
   REQUIRE(result.toStdString() == "I have the best words.");
 }
+
+TEST_CASE("Scanning an image from an invalid path returns an error message",
+          "[Scanner]") {
+  QRLite::Scanner scanner;
+  const auto result = scanner.scan(":/images/non_existent.png");
+  REQUIRE(result.startsWith("Failed to load image"));
+}
