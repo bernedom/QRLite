@@ -52,7 +52,7 @@ Window {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    scanResultText.text = scanner.scan("qrc:/images/images/test.png");
+                    scanResultText.text = scanner.scan(":/images/images/test.png");
                 }
             }
         }

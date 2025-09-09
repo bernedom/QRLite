@@ -14,3 +14,9 @@ TEST_CASE("Scanning a valid QR Code returns the message", "[Scanner]") {
   const auto result = scanner.scan(sample_image);
   REQUIRE(result.toStdString() == "I have the best words.");
 }
+
+TEST_CASE("Scan an image using path", "[Scanner]") {
+  QRLite::Scanner scanner;
+  const auto result = scanner.scan(":/images/test.png");
+  REQUIRE(result.toStdString() == "I have the best words.");
+}
