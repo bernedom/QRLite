@@ -18,5 +18,55 @@ Window {
                 Qt.quit();
             }
         }
+
+        Rectangle {
+            width: 300
+            height: 300
+            color: "white"
+            anchors.centerIn: parent
+
+            Image {
+                source: "qrc:/images/images/test.png"
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
+        Rectangle {
+            width: 120
+            height: 50
+            color: "green"
+            radius: 8
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 40
+
+            Text {
+                text: "scan"
+                color: "white"
+                anchors.centerIn: parent
+                font.bold: true
+                font.pointSize: 18
+            }
+        }
+
+        Rectangle {
+            width: 200
+            height: 40
+            color: "transparent"
+            border.color: "black"
+            border.width: 2
+            radius: 6
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: 40
+
+            Text {
+                text: "abracadabra"
+                anchors.centerIn: parent
+                color: "black"
+                font.pointSize: 16
+            }
+        }
     }
 }
