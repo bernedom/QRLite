@@ -4,5 +4,6 @@
     </qresource>
     <qresource prefix="/images">
         <file>images/test.png</file>
+        <file>images/valid_qr_code_qrlite.png</file>
     </qresource>
 </RCC>

@@ -8,6 +8,16 @@ Window {
     height: 480
     title: "QRLite"
 
+    property var currentImagePath : ":/images/images/test.png"
+
+    function toggleImage() {
+        if (currentImagePath === ":/images/images/test.png") {
+            currentImagePath = ":/images/images/valid_qr_code_qrlite.png";
+        } else {
+            currentImagePath = ":/images/images/test.png";
+        }
+    }
+
     Item {
         id: root
         focus: true
@@ -26,7 +36,7 @@ Window {
             anchors.centerIn: parent
 
             Image {
-                source: "qrc:/images/images/test.png"
+                source: "qrc" + currentImagePath
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
             }
@@ -52,7 +62,8 @@ Window {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    scanResultText.text = scanner.scan(":/images/images/test.png");
+                    scanResultText.text = scanner.scan(currentImagePath);
+                    toggleImage();
                 }
             }
         }
