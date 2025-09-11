@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtMultimedia 5.15
-import QtQuick.Controls 2.15
+import QtQuick 
+import QtQuick.Window 
+import QtMultimedia 
+import QtQuick.Controls
 
 Window {
     id: mainWindow
@@ -59,11 +59,32 @@ Window {
             anchors.centerIn: parent
             id: qrImage
 
-            Image {
-                source: "qrc" + currentImagePath
-                anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
+            CaptureSession {
+                id: captureSession
+                camera: Camera {
+                    id: camera
+                }
+               
+                videoOutput: preview
+
+                Component.onCompleted: {
+                    camera.start()
+                }
             }
+
+            VideoOutput {
+                id: preview
+                visible: true
+                anchors.fill: parent
+                //        autoOrientation: true
+            }
+
+
+            // Image {
+            //     source: "qrc" + currentImagePath
+            //     anchors.fill: parent
+            //     fillMode: Image.PreserveAspectFit
+            // }
         }
 
         Rectangle {
@@ -88,36 +109,6 @@ Window {
                 onClicked: {
                     scanResultText.text = scanner.scan(currentImagePath);
                     toggleImage();
-                }
-            }
-        }
-        
-        // Item {
-        //     width: 640
-        //     height: 360
-
-        //     Camera {
-        //         id: camera
-        //         // focusMode: Camera.FocusModeAutoNear
-        //         // customFocusPoint: Qt.point(0.2, 0.2) // Focus relative to top-left corner
-        //     }
-
-        //     VideoOutput {
-        //         id: videoOutput
-        //         anchors.fill: parent
-        //         source: camera
-        //     }
-        // }
-                
-
-        Item {
-            id: cameraViewer
-            anchors.fill: parent
-
-            CaptureSession {
-                camera: Camera {
-                    id: camera
-                    cameraDevice: mediaDevices.defaultVideoInput
                 }
             }
         }
