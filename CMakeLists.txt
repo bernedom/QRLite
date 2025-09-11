@@ -9,8 +9,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(
   Qt6
-  REQUIRED COMPONENTS Core Gui Multimedia Qml Quick              
-  )
+  COMPONENTS Core Gui Multimedia Qml Quick              
+  REQUIRED)
 
 find_package(ZXing REQUIRED)
 

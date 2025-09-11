@@ -21,6 +21,11 @@ int main(int argc, char **argv) {
     qDebug() << "Camera found:" << cameraDevice.description();
   }
 
+#ifdef __ANDROID__
+  static_asssert(false, "Camera selection not implemented on Android");
+
+#endif
+
   qmlEngine.load(QUrl("qrc:/main.qml"));
 
   return app.exec();
