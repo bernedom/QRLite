@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtMultimedia 5.15
 
 Window {
     id: mainWindow
@@ -30,10 +31,32 @@ Window {
         }
 
         Rectangle {
+            width: parent.width - 40
+            height: 40
+            color: "transparent"
+            border.color: "black"
+            border.width: 2
+            radius: 6
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: 40
+
+            Text {
+                id: scanResultText
+                objectName: "scanResultText"
+                text: "abracadabra"
+                anchors.centerIn: parent
+                color: "black"
+                font.pointSize: 16
+            }
+        }
+
+        Rectangle {
             width: 300
             height: 300
             color: "white"
             anchors.centerIn: parent
+            id: qrImage
 
             Image {
                 source: "qrc" + currentImagePath
@@ -68,25 +91,16 @@ Window {
             }
         }
 
-        Rectangle {
-            width: parent.width - 40
-            height: 40
-            color: "transparent"
-            border.color: "black"
-            border.width: 2
-            radius: 6
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: 40
+        // Item {
+        //     id: cameraViewer
+        //     anchors.fill: parent
 
-            Text {
-                id: scanResultText
-                objectName: "scanResultText"
-                text: "abracadabra"
-                anchors.centerIn: parent
-                color: "black"
-                font.pointSize: 16
-            }
-        }
+        //     CaptureSession {
+        //         camera: Camera {
+        //             id: camera
+        //             cameraDevice: mediaDevices.defaultVideoInput
+        //         }
+        //     }
+        // }
     }
 }
