@@ -4,6 +4,7 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
 
+#include <QtCore/QPermission>
 #include <QtMultimedia/QCamera>
 #include <QtMultimedia/QMediaDevices>
 
@@ -22,8 +23,14 @@ int main(int argc, char **argv) {
   }
 
 #ifdef __ANDROID__
-  static_asssert(false, "Camera selection not implemented on Android");
-
+  QCameraPermission cameraPermission;
+  app.requestPermission(cameraPermission, [](const QPermission &permission) {
+    if (permission.status() == Qt::PermissionStatus::Granted) {
+      qDebug() << "Camera permission granted";
+    } else {
+      qWarning() << "Camera permission denied";
+    }
+  });
 #endif
 
   qmlEngine.load(QUrl("qrc:/main.qml"));
