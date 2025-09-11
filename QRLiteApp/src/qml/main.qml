@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtMultimedia 5.15
+import QtQuick.Controls 2.15
 
 Window {
     id: mainWindow
@@ -90,17 +91,35 @@ Window {
                 }
             }
         }
-
+        
         // Item {
-        //     id: cameraViewer
-        //     anchors.fill: parent
+        //     width: 640
+        //     height: 360
 
-        //     CaptureSession {
-        //         camera: Camera {
-        //             id: camera
-        //             cameraDevice: mediaDevices.defaultVideoInput
-        //         }
+        //     Camera {
+        //         id: camera
+        //         // focusMode: Camera.FocusModeAutoNear
+        //         // customFocusPoint: Qt.point(0.2, 0.2) // Focus relative to top-left corner
+        //     }
+
+        //     VideoOutput {
+        //         id: videoOutput
+        //         anchors.fill: parent
+        //         source: camera
         //     }
         // }
+                
+
+        Item {
+            id: cameraViewer
+            anchors.fill: parent
+
+            CaptureSession {
+                camera: Camera {
+                    id: camera
+                    cameraDevice: mediaDevices.defaultVideoInput
+                }
+            }
+        }
     }
 }
