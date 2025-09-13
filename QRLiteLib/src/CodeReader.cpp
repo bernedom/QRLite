@@ -1,0 +1,1 @@
+#include <QRLite/codeReader.h>
