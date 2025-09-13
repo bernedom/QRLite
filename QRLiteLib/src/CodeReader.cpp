@@ -4,7 +4,10 @@
 #include <QtMultimedia/QVideoSink>
 
 #include <QtCore/QDebug>
-#include <qlogging.h>
+
+#include <QRLite/Scanner.h>
+#include <qdebug.h>
+#include <qimage.h>
 
 namespace QRLite {
 
@@ -22,7 +25,10 @@ void CodeReader::setVideoSink(QVideoSink *sink) {
 };
 
 void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
-  // Todo implement
-  qDebug() << "Frame changed";
+  // Todo implement efficiently
+  QRLite::Scanner scanner;
+  QImage image = frame.toImage();
+  QString result = scanner.scan(image);
+  qDebug() << "Scan result: " << result;
 }
 } // namespace QRLite
