@@ -1,6 +1,6 @@
-import QtQuick 
-import QtQuick.Window 
-import QtMultimedia 
+import QtQuick
+import QtQuick.Window
+import QtMultimedia
 import QtQuick.Controls
 
 Window {
@@ -10,7 +10,7 @@ Window {
     height: 480
     title: "QRLite"
 
-    property var currentImagePath : ":/images/images/test.png"
+    property var currentImagePath: ":/images/images/test.png"
 
     function toggleImage() {
         if (currentImagePath === ":/images/images/test.png") {
@@ -53,22 +53,23 @@ Window {
         }
 
         Rectangle {
+            id: qrImage
             width: 300
             height: 300
             color: "white"
             anchors.centerIn: parent
-            id: qrImage
 
             CaptureSession {
                 id: captureSession
                 camera: Camera {
                     id: camera
+                    focusMode: Camera.FocusModeAutoNear
                 }
-               
+
                 videoOutput: preview
 
                 Component.onCompleted: {
-                    camera.start()
+                    camera.start();
                 }
             }
 
@@ -78,7 +79,6 @@ Window {
                 anchors.fill: parent
                 //        autoOrientation: true
             }
-
 
             // Image {
             //     source: "qrc" + currentImagePath

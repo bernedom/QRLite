@@ -1,4 +1,4 @@
-#include <QRLite/scanner.h>
+#include <QRLite/Scanner.h>
 
 #include <ZXing/BarcodeFormat.h>
 #include <ZXing/ImageView.h>

@@ -8,7 +8,7 @@
 #include <QtMultimedia/QCamera>
 #include <QtMultimedia/QMediaDevices>
 
-#include <QRLite/scanner.h>
+#include <QRLite/Scanner.h>
 int main(int argc, char **argv) {
 
   QGuiApplication app(argc, argv);
