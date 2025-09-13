@@ -3,6 +3,9 @@
 #include <QtMultimedia/QVideoFrame>
 #include <QtMultimedia/QVideoSink>
 
+#include <QtCore/QDebug>
+#include <qlogging.h>
+
 namespace QRLite {
 
 void CodeReader::setVideoSink(QVideoSink *sink) {
@@ -20,5 +23,6 @@ void CodeReader::setVideoSink(QVideoSink *sink) {
 
 void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
   // Todo implement
+  qDebug() << "Frame changed";
 }
 } // namespace QRLite

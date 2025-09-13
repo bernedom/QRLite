@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtMultimedia
 import QtQuick.Controls
+import QRLite 1.0
 
 Window {
     id: mainWindow
@@ -18,6 +19,10 @@ Window {
         } else {
             currentImagePath = ":/images/images/test.png";
         }
+    }
+    CodeReader {
+        id: codeReader
+        videoSink: preview.videoSink
     }
 
     Item {
@@ -77,6 +82,7 @@ Window {
                 id: preview
                 visible: true
                 anchors.fill: parent
+
                 //        autoOrientation: true
             }
 

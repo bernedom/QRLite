@@ -1,3 +1,4 @@
+
 #include <QtCore/QFile>
 #include <QtCore/QObject>
 #include <QtGui/QGuiApplication>
@@ -8,8 +9,13 @@
 #include <QtMultimedia/QCamera>
 #include <QtMultimedia/QMediaDevices>
 
+#include <QRLite/CodeReader.h>
 #include <QRLite/Scanner.h>
+
 int main(int argc, char **argv) {
+
+  qRegisterMetaType<QRLite::CodeReader>("CodeReader");
+  qmlRegisterType<QRLite::CodeReader>("QRLite", 1, 0, "CodeReader");
 
   QGuiApplication app(argc, argv);
   app.setApplicationName("QRLite");
