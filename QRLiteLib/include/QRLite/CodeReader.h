@@ -1,11 +1,9 @@
 #pragma once
 
 #include <QtCore/QObject>
+#include <QtCore/QThreadPool>
 #include <QtMultimedia/QVideoFrame>
 #include <QtMultimedia/QVideoSink>
-#include <QtMultimedia/qvideosink.h>
-#include <qvariant.h>
-
 namespace QRLite {
 class CodeReader : public QObject {
   Q_OBJECT
@@ -22,5 +20,6 @@ public:
 
 private:
   QVideoSink *_sink = nullptr;
+  QThreadPool _threadPool;
 };
 } // namespace QRLite

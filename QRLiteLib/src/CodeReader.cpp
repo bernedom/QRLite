@@ -25,10 +25,18 @@ void CodeReader::setVideoSink(QVideoSink *sink) {
 };
 
 void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
-  // Todo implement efficiently
-  QRLite::Scanner scanner;
-  QImage image = frame.toImage();
-  QString result = scanner.scan(image);
-  qDebug() << "Scan result: " << result;
+
+  // skip frame if all threads are busy
+  if (_threadPool.activeThreadCount() >= _threadPool.maxThreadCount()) {
+    return;
+  }
+
+  // Todo refactor for more efficiency, merge with scanner
+  _threadPool.start([frame]() {
+    QRLite::Scanner scanner;
+    QImage image = frame.toImage();
+    QString result = scanner.scan(image);
+    qDebug() << "Scan result: " << result;
+  });
 }
 } // namespace QRLite
