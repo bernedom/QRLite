@@ -12,7 +12,7 @@ target_sources(QRLiteTests PRIVATE src/test_assets.qrc src/scanner_test.cpp)
 # add the include directory for the source code
 target_include_directories(QRLiteTests
                            PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
-target_compile_features(QRLiteTests PRIVATE cxx_std_20)
+target_compile_features(QRLiteTests PUBLIC cxx_std_23)
 
 # add_test(NAME QRLiteUnitTests COMMAND QRLiteTests)
 catch_discover_tests(QRLiteTests)

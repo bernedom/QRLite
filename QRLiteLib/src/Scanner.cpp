@@ -6,28 +6,22 @@
 #include <ZXing/ReaderOptions.h>
 
 #include <QDebug>
+#include <expected>
 #include <qlogging.h>
 
 namespace QRLite {
 
-QString Scanner::scan(const QString &imagePath) const {
-  QImage image;
-  if (!image.load(imagePath)) {
-    return QString("Failed to load image: %1").arg(imagePath);
-  }
-  return scan(image);
-}
-
-QString Scanner::scan(const QImage &image) const {
+std::expected<QString, ScannerError> Scanner::scan(const QImage &image) const {
 
   if (image.isNull()) {
-    return QString();
+    return std::unexpected(ScannerError("Image is null"));
   }
 
   const auto rgbImage = image.convertToFormat(QImage::Format_RGB888);
 
   if (rgbImage.isNull()) {
-    return QString("Failed to convert image to RGB format");
+    return std::unexpected(
+        ScannerError("Failed to convert image to RGB format"));
   }
 
   const ZXing::ImageView imageView(rgbImage.bits(), rgbImage.width(),
@@ -40,7 +34,7 @@ QString Scanner::scan(const QImage &image) const {
   const auto results = ZXing::ReadBarcodes(imageView, decoderOptions);
 
   if (results.empty()) {
-    return QString("No QR code found");
+    return std::unexpected(ScannerError("No QR code found"));
   }
 
   QStringList messages;
