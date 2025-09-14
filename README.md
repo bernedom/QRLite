@@ -30,3 +30,14 @@ To build the android apk built the target `apk`:
 ```
 cmake --build --preset Ninja-Debug --target apk
 ```
+
+## Backlog
+
+* Display scanned result in UI
+* Configure AndroidManifest.xml for correct name, permissions
+* Add icon
+
+* Functionality to read QR codes from images
+    * Select from gallery
+    * select from file system
+* Write QR codes (later)
