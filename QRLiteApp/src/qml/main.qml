@@ -14,6 +14,11 @@ Window {
     CodeReader {
         id: codeReader
         videoSink: preview.videoSink
+
+        onValidCodeDetected: {
+            scanResultText.text = code;
+            console.log("Valid code detected: " + code);
+        }
     }
 
     Item {
@@ -41,7 +46,7 @@ Window {
             Text {
                 id: scanResultText
                 objectName: "scanResultText"
-                text: "abracadabra"
+                text: ""
                 anchors.centerIn: parent
                 color: "black"
                 font.pointSize: 16

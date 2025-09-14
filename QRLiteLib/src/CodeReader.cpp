@@ -32,11 +32,13 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
   }
 
   // Todo refactor for more efficiency, merge with scanner
-  _threadPool.start([frame]() {
+  _threadPool.start([frame, this]() {
     QRLite::Scanner scanner;
     QImage image = frame.toImage();
     QString result = scanner.scan(image);
-    qDebug() << "Scan result: " << result;
+    if (result != "No QR code found") {
+      emit validCodeDetected(result);
+    }
   });
 }
 } // namespace QRLite

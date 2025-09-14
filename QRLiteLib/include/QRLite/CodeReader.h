@@ -18,6 +18,9 @@ public:
 
   Q_PROPERTY(QVideoSink *videoSink MEMBER _sink WRITE setVideoSink)
 
+signals:
+  void validCodeDetected(const QString code);
+
 private:
   QVideoSink *_sink = nullptr;
   QThreadPool _threadPool;
