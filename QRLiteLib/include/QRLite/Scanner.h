@@ -19,6 +19,7 @@ public:
   explicit Scanner(QObject *parent = nullptr) : QObject(parent) {};
   ~Scanner() override {};
 
+  std::expected<QString, ScannerError> scan(const QString& path) const;
   std::expected<QString, ScannerError> scan(const QImage &image) const;
 signals:
   void validCodeFound(const QString code);

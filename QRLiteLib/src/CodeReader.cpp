@@ -35,9 +35,12 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
   _threadPool.start([frame, this]() {
     QRLite::Scanner scanner;
     QImage image = frame.toImage();
-    QString result = scanner.scan(image);
-    if (result != "No QR code found") {
-      emit validCodeDetected(result);
+    const auto result = scanner.scan(image);
+
+    if (result.has_value()) {
+      emit validCodeDetected(result.value());
+    } else {
+      qDebug() << "No code detected:" << result.error().message;
     }
   });
 }
