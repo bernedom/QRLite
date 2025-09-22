@@ -6,7 +6,7 @@ project(
   LANGUAGES CXX C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+set(QT_ANDROID_PACKAGE_NAME "ch.softwarecraft.qrlite")
 
 find_package(
   Qt6
