@@ -15,7 +15,7 @@ jobs:
   build-desktop:
     runs-on: ubuntu-24.04
     container:
-      image: bernedom/qtandroidbuilder:6762574be97a73aac1f0c34ce55755960964e59d
+      image: bernedom/qtandroidbuilder:latest
 
     steps:
       - name: Checkout code
@@ -37,7 +37,7 @@ jobs:
   build-android:
     runs-on: ubuntu-24.04
     container:
-      image: bernedom/qtandroidbuilder:6762574be97a73aac1f0c34ce55755960964e59d
+      image: bernedom/qtandroidbuilder:latest
 
     strategy:
       matrix:
