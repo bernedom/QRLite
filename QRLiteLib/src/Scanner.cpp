@@ -11,13 +11,11 @@
 
 namespace QRLite {
 
-std::expected<QString, ScannerError> Scanner::scan(const QString& path) const
-{
+std::expected<QString, ScannerError> Scanner::scan(const QString &path) const {
   QImage image(path);
-  if(image.isNull())
-  { 
+  if (image.isNull()) {
     return std::unexpected(ScannerError("Could not open image " + path));
-  }  
+  }
   return scan(image);
 }
 
