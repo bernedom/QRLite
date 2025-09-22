@@ -20,5 +20,8 @@ endif()
 
 include(CTest)
 
+get_target_property(ZXINGdirs ZXing::ZXing INTERFACE_INCLUDE_DIRECTORIES)
+message(STATUS "ZXing include dirs: ${ZXINGdirs}")
+
 add_subdirectory(QRLiteLib)
 add_subdirectory(QRLiteApp)
