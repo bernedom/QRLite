@@ -49,7 +49,6 @@
             "cacheVariables": {
                 "ANDROID_PLATFORM": "31",
                 "ANDROID_SDK_ROOT": "/opt/android",
-                "CONAN_HOST_PROFILE": "android",
                 "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE": "BOTH",
                 "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "BOTH",
                 "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "BOTH"
@@ -58,6 +57,22 @@
             "inherits": [
                 "conan-dependency-provider"
             ]
+        },
+        {
+            "name": "conan-android-debug",
+            "hidden": true,
+            "cacheVariables": {
+                "CONAN_HOST_PROFILE": "android-debug",
+                "CONAN_BUILD_PROFILE": "android-debug"
+            }
+        },
+        {
+            "name": "conan-android-release",
+            "hidden": true,
+            "cacheVariables": {
+                "CONAN_HOST_PROFILE": "android-release",
+                "CONAN_BUILD_PROFILE": "android-release"
+            }
         },
         {
             "name": "android-armeabi-v7a",
@@ -171,7 +186,7 @@
                 "android-armeabi-v7a",
                 "clang-compiler-flags",
                 "Qt-android-armeabi-v7a",
-                "conan-dependency-provider"
+                "conan-android-debug"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -184,7 +199,8 @@
                 "ci-ninja",
                 "android-armeabi-v7a",
                 "clang-compiler-flags",
-                "Qt-android-armeabi-v7a"
+                "Qt-android-armeabi-v7a",
+                "conan-android-release"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -197,7 +213,8 @@
                 "Qt-android-arm64-v8a",
                 "ci-ninja",
                 "android-arm64-v8a",
-                "clang-compiler-flags"
+                "clang-compiler-flags",
+                "conan-android-debug"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -210,7 +227,8 @@
                 "Qt-android-arm64-v8a",
                 "ci-ninja",
                 "android-arm64-v8a",
-                "clang-compiler-flags"
+                "clang-compiler-flags",
+                "conan-android-release"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -223,7 +241,8 @@
                 "Qt-android-x86_64",
                 "ci-ninja",
                 "android-x86_64",
-                "clang-compiler-flags"
+                "clang-compiler-flags",
+                "conan-android-debug"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -236,7 +255,8 @@
                 "Qt-android-x86_64",
                 "ci-ninja",
                 "android-x86_64",
-                "clang-compiler-flags"
+                "clang-compiler-flags",
+                "conan-android-release"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
