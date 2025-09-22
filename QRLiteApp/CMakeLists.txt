@@ -12,7 +12,8 @@ target_compile_features(QRLite PRIVATE cxx_std_20)
 set_target_properties(QRLite PROPERTIES
   QT_ANDROID_PACKAGE_NAME "ch.softwarecraft.qrlite"
   QT_ANDROID_APP_ICON "src/qml/images/icon.png"
-  
+  QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+
 )
 
 #todo set QT_ANDROID_APP_ICON "path to icon"
