@@ -7,7 +7,6 @@
 
 #include <QDebug>
 #include <expected>
-#include <qlogging.h>
 
 namespace QRLite {
 
