@@ -7,6 +7,36 @@ This app is built in with C++ using the Qt framework.
 
 ## Build Requirements
 
+* conan2 as dependency manager
+* cmake 3.24 or newer
+* ninja (if using the ninja generator)
+* Android NDK & SDK (if building for android)
+
+Conan Profiles supported in the devcontainer:
+
+Desktop (Linux):
+```
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+```
+
+Android 
+```
+[settings]
+arch=x86_64
+build_type=Release
+compiler=clang
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=18
+os=Linux
+```
 ### Dependencies
 
 * Qt 6
@@ -33,7 +63,6 @@ cmake --build --preset Ninja-Debug --target apk
 
 ## Backlog
 
-* Display scanned result in UI
 * Configure AndroidManifest.xml for correct name, permissions
 * Add icon
 

@@ -49,6 +49,7 @@
             "cacheVariables": {
                 "ANDROID_PLATFORM": "31",
                 "ANDROID_SDK_ROOT": "/opt/android",
+                "CONAN_HOST_PROFILE": "android",
                 "CMAKE_FIND_ROOT_PATH_MODE_PACKAGE": "BOTH",
                 "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "BOTH",
                 "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "BOTH"
