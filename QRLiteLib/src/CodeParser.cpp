@@ -1,7 +1,7 @@
 #include "CodeParser.h"
 
 namespace QRLite::CodeParser {
-std::expected<QString, QString> parse(const QString &code) {
+std::expected<QString, QString> parse(const QString &code) noexcept {
   // Simple validation: check if the code is non-empty and has at least 5
   // characters
   if (code.isEmpty()) {

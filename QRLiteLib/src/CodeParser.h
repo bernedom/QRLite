@@ -6,7 +6,7 @@
 namespace QRLite {
 
 namespace CodeParser {
-std::expected<QString, QString> parse(const QString &code);
+std::expected<QString, QString> parse(const QString &code) noexcept;
 
 }
 } // namespace QRLite

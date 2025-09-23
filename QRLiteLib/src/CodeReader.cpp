@@ -5,9 +5,8 @@
 
 #include <QtCore/QDebug>
 
+#include "CodeParser.h"
 #include <QRLite/Scanner.h>
-#include <qdebug.h>
-#include <qimage.h>
 
 namespace QRLite {
 
@@ -38,7 +37,12 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
     const auto result = scanner.scan(image);
 
     if (result.has_value()) {
-      emit validCodeDetected(result.value());
+      const auto parsedResult = CodeParser::parse(result.value());
+      if (parsedResult.has_value()) {
+        emit validCodeDetected(parsedResult.value());
+      } else {
+        // emit errorDetected(parsedResult.error());
+      }
     }
   });
 }

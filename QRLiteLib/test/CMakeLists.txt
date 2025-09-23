@@ -7,7 +7,8 @@ set(CMAKE_AUTOMOC ON)
 add_executable(QRLiteTests)
 target_link_libraries(QRLiteTests PRIVATE QRLite::QRLiteLib
                                           Catch2::Catch2WithMain)
-target_sources(QRLiteTests PRIVATE src/test_assets.qrc src/scanner_test.cpp)
+target_sources(QRLiteTests PRIVATE src/test_assets.qrc src/scanner_test.cpp
+                                   src/codeparser_test.cpp)
 
 # add the include directory for the source code
 target_include_directories(QRLiteTests
