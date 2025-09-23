@@ -1,5 +1,6 @@
 #include <CodeParser.h>
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators.hpp>
 
 TEST_CASE("Empty code returns an error", "[CodeParser]") {
   const auto result = QRLite::CodeParser::parse("");
@@ -17,5 +18,21 @@ TEST_CASE("Valid URL returns a link", "[CodeParser]") {
 TEST_CASE("Non-URL code returns the original code", "[CodeParser]") {
   const auto result = QRLite::CodeParser::parse("SomeRandom123");
   REQUIRE(result.has_value());
-  REQUIRE(result.value() == "SomeRandom123");
+  REQUIRE(result.value().toStdString() == "SomeRandom123");
+}
+
+TEST_CASE("URL without scheme returns a link with http://", "[CodeParser]") {
+  const auto result = QRLite::CodeParser::parse("example.com");
+  REQUIRE(result.has_value());
+  REQUIRE(result.value() ==
+          "<a href=\"http://example.com\">http://example.com</a>");
+}
+
+TEST_CASE("Code with invalid TLD returns the original code", "[CodeParser]") {
+  const auto data =
+      GENERATE("example.c", "example.commM", "example.1a", "example.");
+  const auto result = QRLite::CodeParser::parse(data);
+
+  REQUIRE(result.has_value());
+  REQUIRE(result.value().toStdString() == data);
 }
