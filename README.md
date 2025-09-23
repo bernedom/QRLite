@@ -63,9 +63,11 @@ cmake --build --preset Ninja-Debug --target apk
 
 ## Backlog
 
-* Configure AndroidManifest.xml for correct name, permissions
-* Add icon
+* Configure AndroidManifest.xml for correct permissions
+* Add icon on desktop
+* If permissions for camera are not (yet) granted, do not initialized camera
 
+* Allow to open http links when scanned
 * Functionality to read QR codes from images
     * Select from gallery
     * select from file system
