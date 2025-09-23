@@ -8,8 +8,13 @@ Window {
     id: mainWindow
     visible: true
     width: 640
-    height: 480
+    height: 640
     title: "QRLite"
+
+    readonly property int horizontalMargin: 40
+    readonly property int verticalMargin: 40
+    readonly property int spacing: 20
+    readonly property int textMargin: 10
 
     CodeReader {
         id: codeReader
@@ -32,16 +37,16 @@ Window {
         }
 
         Rectangle {
-            width: parent.width - 40
+            width: parent.width - horizontalMargin * 2
             // Height grows with text, up to 1/3 of window height
-            height: Math.min(scanResultText.paintedHeight + 20, mainWindow.height / 3)
+            height: Math.min(scanResultText.paintedHeight + spacing, mainWindow.height / 3)
             color: "transparent"
             border.color: "black"
             border.width: 2
             radius: 6
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-            anchors.topMargin: 40
+            anchors.topMargin: verticalMargin
 
             Text {
                 id: scanResultText
@@ -54,11 +59,11 @@ Window {
                 }
 
                 anchors.top: parent.top
-                anchors.topMargin: 10
+                anchors.topMargin: textMargin
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.leftMargin: 10
-                anchors.rightMargin: 10
+                anchors.leftMargin: textMargin
+                anchors.rightMargin: textMargin
                 color: "black"
                 font.pointSize: 16
             }
@@ -70,7 +75,7 @@ Window {
             height: 300
             color: "white"
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 20
+            anchors.bottomMargin: spacing
             anchors.horizontalCenter: parent.horizontalCenter
 
             CaptureSession {
