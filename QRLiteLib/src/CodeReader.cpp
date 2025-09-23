@@ -31,6 +31,13 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
     return;
   }
 
+  static int frameCount = 0;
+  frameCount++;
+  if (frameCount == 50) {
+    emit validCodeDetected(
+        "<a href=\"https://softwarecraft.ch\">https://softwarecraft.ch</a>");
+  }
+
   // Todo refactor for more efficiency, merge with scanner
   _threadPool.start([frame, this]() {
     QRLite::Scanner scanner;

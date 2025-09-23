@@ -47,6 +47,10 @@ Window {
                 id: scanResultText
                 objectName: "scanResultText"
                 text: ""
+                textFormat: Text.RichText
+                onLinkActivated: function (link) {
+                    Qt.openUrlExternally(link);
+                }
                 anchors.centerIn: parent
                 color: "black"
                 font.pointSize: 16
