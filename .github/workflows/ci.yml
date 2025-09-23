@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   build-desktop:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     container:
       image: bernedom/qtandroidbuilder:latest
 
@@ -35,7 +35,7 @@ jobs:
         working-directory: build
 
   build-android:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     container:
       image: bernedom/qtandroidbuilder:latest
 

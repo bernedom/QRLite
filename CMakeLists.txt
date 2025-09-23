@@ -6,7 +6,6 @@ project(
   LANGUAGES CXX C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
 
 find_package(
   Qt6
@@ -20,6 +19,9 @@ if(NOT ANDROID)
 endif()
 
 include(CTest)
+
+get_target_property(ZXINGdirs ZXing::ZXing INTERFACE_INCLUDE_DIRECTORIES)
+message(STATUS "ZXing include dirs: ${ZXINGdirs}")
 
 add_subdirectory(QRLiteLib)
 add_subdirectory(QRLiteApp)
