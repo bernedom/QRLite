@@ -67,8 +67,15 @@ cmake --build --preset Ninja-Debug --target apk
 * Add icon on desktop
 * If permissions for camera are not (yet) granted, do not initialized camera
 
-* Allow to open http links when scanned
 * Functionality to read QR codes from images
     * Select from gallery
     * select from file system
 * Write QR codes (later)
+
+### Extended featuers for later releases
+
+* Sanity checks for urls etc
+* Auto detect types like WLAN access, vCard, mailto, ...
+* Open proper app for detected types
+* allow to select camera
+* turn on/off flashlight

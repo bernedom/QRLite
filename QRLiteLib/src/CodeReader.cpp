@@ -30,6 +30,17 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
     return;
   }
 
+  static int frameCount = 0;
+  frameCount++;
+  if (frameCount == 100) {
+    emit validCodeDetected(
+        "A VERY LONG TEXT with \n LINEBREAKKS AND SPECIAL "
+        "CHARACTERS !@#$%^&*()_+ \n and more text to make it long \n and more "
+        "text to make it long \n and more text to make"
+        "it long \n and                            \n <"
+        "a href =\"https://example.com\">https://example.com</a>");
+  }
+
   // Todo refactor for more efficiency, merge with scanner
   _threadPool.start([frame, this]() {
     QRLite::Scanner scanner;

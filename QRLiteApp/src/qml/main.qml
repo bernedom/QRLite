@@ -33,7 +33,8 @@ Window {
 
         Rectangle {
             width: parent.width - 40
-            height: 40
+            // Height grows with text, up to 1/3 of window height
+            height: Math.min(scanResultText.paintedHeight + 20, mainWindow.height / 3)
             color: "transparent"
             border.color: "black"
             border.width: 2
@@ -47,10 +48,17 @@ Window {
                 objectName: "scanResultText"
                 text: ""
                 textFormat: Text.RichText
+                wrapMode: Text.Wrap
                 onLinkActivated: function (link) {
                     Qt.openUrlExternally(link);
                 }
-                anchors.centerIn: parent
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
                 color: "black"
                 font.pointSize: 16
             }
