@@ -2,8 +2,9 @@
     <qresource prefix="/">
         <file>main.qml</file>
     </qresource>
-    <qresource prefix="/images">
+    <qresource prefix="/">
         <file>images/test.png</file>
         <file>images/valid_qr_code_qrlite.png</file>
+        <file>images/app_icon.png</file>
     </qresource>
 </RCC>

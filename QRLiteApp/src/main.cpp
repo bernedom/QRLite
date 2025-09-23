@@ -5,7 +5,9 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
 
+#include <QtCore/QDirIterator>
 #include <QtCore/QPermission>
+#include <QtGui/QIcon>
 #include <QtMultimedia/QCamera>
 #include <QtMultimedia/QMediaDevices>
 
@@ -19,6 +21,7 @@ int main(int argc, char **argv) {
 
   QGuiApplication app(argc, argv);
   app.setApplicationName("QRLite");
+  app.setWindowIcon(QIcon(":/images/app_icon.png"));
   QQmlApplicationEngine qmlEngine;
   QRLite::Scanner scanner;
   qmlEngine.rootContext()->setContextProperty("scanner", &scanner);
