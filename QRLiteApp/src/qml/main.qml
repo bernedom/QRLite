@@ -15,9 +15,8 @@ Window {
         id: codeReader
         videoSink: preview.videoSink
 
-        onValidCodeDetected: {
+        onValidCodeDetected: code => {
             scanResultText.text = code;
-            console.log("Valid code detected: " + code);
         }
     }
 
