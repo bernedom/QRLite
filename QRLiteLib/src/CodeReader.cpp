@@ -39,8 +39,6 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
 
     if (result.has_value()) {
       emit validCodeDetected(result.value());
-    } else {
-      qDebug() << "No code detected:" << result.error().message;
     }
   });
 }
