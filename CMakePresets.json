@@ -185,8 +185,7 @@
                 "ci-ninja",
                 "android-armeabi-v7a",
                 "clang-compiler-flags",
-                "Qt-android-armeabi-v7a",
-                "conan-android-debug"
+                "Qt-android-armeabi-v7a"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -199,8 +198,7 @@
                 "ci-ninja",
                 "android-armeabi-v7a",
                 "clang-compiler-flags",
-                "Qt-android-armeabi-v7a",
-                "conan-android-release"
+                "Qt-android-armeabi-v7a"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -213,8 +211,7 @@
                 "Qt-android-arm64-v8a",
                 "ci-ninja",
                 "android-arm64-v8a",
-                "clang-compiler-flags",
-                "conan-android-debug"
+                "clang-compiler-flags"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -227,8 +224,7 @@
                 "Qt-android-arm64-v8a",
                 "ci-ninja",
                 "android-arm64-v8a",
-                "clang-compiler-flags",
-                "conan-android-release"
+                "clang-compiler-flags"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -241,8 +237,7 @@
                 "Qt-android-x86_64",
                 "ci-ninja",
                 "android-x86_64",
-                "clang-compiler-flags",
-                "conan-android-debug"
+                "clang-compiler-flags"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -255,8 +250,7 @@
                 "Qt-android-x86_64",
                 "ci-ninja",
                 "android-x86_64",
-                "clang-compiler-flags",
-                "conan-android-release"
+                "clang-compiler-flags"
             ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
