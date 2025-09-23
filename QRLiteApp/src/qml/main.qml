@@ -52,7 +52,6 @@ Window {
                 onLinkActivated: function (link) {
                     Qt.openUrlExternally(link);
                 }
-                anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: 10
                 anchors.left: parent.left

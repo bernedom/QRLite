@@ -32,7 +32,7 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
 
   static int frameCount = 0;
   frameCount++;
-  if (frameCount == 100) {
+  if (frameCount == 10) {
     emit validCodeDetected(
         "A VERY LONG TEXT with \n LINEBREAKKS AND SPECIAL "
         "CHARACTERS !@#$%^&*()_+ \n and more text to make it long \n and more "
