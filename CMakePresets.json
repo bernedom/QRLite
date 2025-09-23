@@ -63,7 +63,7 @@
             "hidden": true,
             "cacheVariables": {
                 "CONAN_HOST_PROFILE": "android-debug",
-                "CONAN_BUILD_PROFILE": "android-debug"
+                "CONAN_BUILD_PROFILE": "android"
             }
         },
         {
