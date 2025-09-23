@@ -52,6 +52,7 @@ Window {
                 onLinkActivated: function (link) {
                     Qt.openUrlExternally(link);
                 }
+
                 anchors.top: parent.top
                 anchors.topMargin: 10
                 anchors.left: parent.left
@@ -68,7 +69,9 @@ Window {
             width: 300
             height: 300
             color: "white"
-            anchors.centerIn: parent
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 20
+            anchors.horizontalCenter: parent.horizontalCenter
 
             CaptureSession {
                 id: captureSession
