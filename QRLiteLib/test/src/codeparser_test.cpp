@@ -22,15 +22,21 @@ TEST_CASE("Non-URL code returns the original code", "[CodeParser]") {
 }
 
 TEST_CASE("URL without scheme returns a link with http://", "[CodeParser]") {
-  const auto result = QRLite::CodeParser::parse("example.com");
+  const QString data =
+      GENERATE("example.com", "www.example.com", "sub.domain.org",
+               "test-site.net?with=query", "my-site.io/path",
+               "test-site.net?with=query&multiple=params");
+
+  const auto result = QRLite::CodeParser::parse(data);
   REQUIRE(result.has_value());
-  REQUIRE(result.value() ==
-          "<a href=\"http://example.com\">http://example.com</a>");
+  REQUIRE(result.value().toStdString() ==
+          QString("<a href=\"http://" + data + "\">http://" + data + "</a>")
+              .toStdString());
 }
 
 TEST_CASE("Code with invalid TLD returns the original code", "[CodeParser]") {
-  const auto data =
-      GENERATE("example.c", "example.commM", "example.1a", "example.");
+  const auto data = GENERATE("example.c", "example.commM", "example.1a",
+                             "example.", "ftp://non-http.com");
   const auto result = QRLite::CodeParser::parse(data);
 
   REQUIRE(result.has_value());
