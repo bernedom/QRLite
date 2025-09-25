@@ -61,11 +61,26 @@ To build the android apk built the target `apk`:
 cmake --build --preset Ninja-Debug --target apk
 ```
 
+### Running the android emulator
+
+Install the system images for the android emulator using the sdkmanager then create an AVD using the avdmanager:
+
+```
+sudo /opt/android/cmdline-tools/cmdline-tools/bin/sdkmanager --install "system-images;android-33;google_apis;x86_64"
+avdmanager create avd -n test -k "system-images;android-33;google_apis;x86_64"
+```
+
+Check <https://github.com/amrsa1/Android-Emulator-images> for more details.
+
+Then start the emulator:
+
+```
+
 ## Backlog
 
 * Configure AndroidManifest.xml for correct permissions
-* Add icon on desktop
 * If permissions for camera are not (yet) granted, do not initialized camera
+* ad landscape mode 
 
 * Functionality to read QR codes from images
     * Select from gallery
