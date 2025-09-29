@@ -73,7 +73,7 @@ Window {
             id: qrImage
             width: 300
             height: 300
-            color: "white"
+            color: "gray"
             anchors.bottom: parent.bottom
             anchors.bottomMargin: spacing
             anchors.horizontalCenter: parent.horizontalCenter

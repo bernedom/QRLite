@@ -80,7 +80,7 @@ Then start the emulator:
 
 * Configure AndroidManifest.xml for correct permissions
 * If permissions for camera are not (yet) granted, do not initialized camera
-* ad landscape mode 
+* add landscape mode 
 
 * Functionality to read QR codes from images
     * Select from gallery
