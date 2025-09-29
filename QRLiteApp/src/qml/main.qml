@@ -37,6 +37,7 @@ Window {
         }
 
         Rectangle {
+            id: scanResultBox
             width: parent.width - horizontalMargin * 2
             // Height grows with text, up to 1/3 of window height
             height: Math.min(scanResultText.paintedHeight + spacing, mainWindow.height / 3)
@@ -71,9 +72,9 @@ Window {
 
         Rectangle {
             id: qrImage
-            width: 300
-            height: 300
-            color: "gray"
+            width: parent.width - horizontalMargin * 2
+            height: parent.height - scanResultBox.height- verticalMargin * 2 - spacing
+            color: "transparent"
             anchors.bottom: parent.bottom
             anchors.bottomMargin: spacing
             anchors.horizontalCenter: parent.horizontalCenter
