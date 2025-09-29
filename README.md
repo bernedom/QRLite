@@ -80,14 +80,13 @@ Then start the emulator:
 
 * Configure AndroidManifest.xml for correct permissions
 * If permissions for camera are not (yet) granted, do not initialized camera
-* add landscape mode 
 
 * Functionality to read QR codes from images
     * Select from gallery
     * select from file system
 * Write QR codes (later)
 
-### Extended featuers for later releases
+### Extended features for later releases
 
 * Sanity checks for urls etc
 * Auto detect types like WLAN access, vCard, mailto, ...

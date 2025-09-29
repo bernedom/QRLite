@@ -33,13 +33,20 @@ int main(int argc, char **argv) {
 
 #ifdef __ANDROID__
   QCameraPermission cameraPermission;
-  app.requestPermission(cameraPermission, [](const QPermission &permission) {
-    if (permission.status() == Qt::PermissionStatus::Granted) {
-      qDebug() << "Camera permission granted";
-    } else {
-      qWarning() << "Camera permission denied";
-    }
-  });
+  app.requestPermission(
+      cameraPermission, [&qmlEngine](const QPermission &permission) {
+        if (permission.status() == Qt::PermissionStatus::Granted) {
+          qDebug() << "Camera permission granted";
+          qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted",
+                                                      true);
+        } else {
+          qWarning() << "Camera permission denied";
+          qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted",
+                                                      false);
+        }
+      });
+#else
+  qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted", true);
 #endif
 
   qmlEngine.load(QUrl("qrc:/main.qml"));

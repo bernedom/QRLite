@@ -71,7 +71,7 @@ Window {
         }
 
         Rectangle {
-            id: qrImage
+            id: cameraView
             width: parent.width - horizontalMargin * 2
             height: parent.height - scanResultBox.height- verticalMargin * 2 - spacing
             color: "transparent"
@@ -89,13 +89,14 @@ Window {
                 videoOutput: preview
 
                 Component.onCompleted: {
-                    camera.start();
+                       camera.start();
+                   
                 }
             }
 
             VideoOutput {
                 id: preview
-                visible: true
+                visible: cameraPermissionGranted && camera.status === Camera.ActiveStatus
                 anchors.fill: parent
             }
         }
