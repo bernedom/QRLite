@@ -79,9 +79,22 @@ Window {
             anchors.bottomMargin: spacing
             anchors.horizontalCenter: parent.horizontalCenter
 
+            PermissionCheck {
+                id: permissionCheck
+                anchors.fill: parent
+                visible: true
+            }
+
+            PermissionDenied {
+                id: permissionDenied
+                anchors.fill: parent
+                visible: false
+            }
+
             Item {
                 id: cameraContainer
                 anchors.fill: parent
+                visible: false
 
                 CaptureSession {
                     id: captureSession

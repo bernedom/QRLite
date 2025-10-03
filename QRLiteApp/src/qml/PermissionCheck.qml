@@ -1,6 +1,6 @@
 import QtQuick
 
-Rectangle{
+Rectangle {
     id: permissionCheck
     width: parent.width
     height: parent.height
