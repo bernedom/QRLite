@@ -14,42 +14,51 @@
 #include <QRLite/CodeReader.h>
 #include <QRLite/Scanner.h>
 
+#include "PermissionChecker.h"
+
 int main(int argc, char **argv) {
 
   qRegisterMetaType<QRLite::CodeReader>("CodeReader");
+  qRegisterMetaType<QRLite::PermissionChecker>("PermissionChecker");
   qmlRegisterType<QRLite::CodeReader>("QRLite", 1, 0, "CodeReader");
+  qmlRegisterType<QRLite::PermissionChecker>("QRLite", 1, 0,
+                                             "PermissionChecker");
 
   QGuiApplication app(argc, argv);
   app.setApplicationName("QRLite");
   app.setWindowIcon(QIcon(":/images/app_icon.png"));
   QQmlApplicationEngine qmlEngine;
   QRLite::Scanner scanner;
+  QRLite::PermissionChecker permissionChecker;
   qmlEngine.rootContext()->setContextProperty("scanner", &scanner);
+  qmlEngine.rootContext()->setContextProperty("permissionChecker",
+                                              &permissionChecker);
 
   const QList<QCameraDevice> cameras = QMediaDevices::videoInputs();
   for (const QCameraDevice &cameraDevice : cameras) {
     qDebug() << "Camera found:" << cameraDevice.description();
   }
 
-  qmlEngine.rootContext()->setContextProperty("cameraCheckPending", true);
-
 #ifdef __ANDROID__
   QCameraPermission cameraPermission;
-  app.requestPermission(
-      cameraPermission, [&qmlEngine](const QPermission &permission) {
-        if (permission.status() == Qt::PermissionStatus::Granted) {
-          qDebug() << "Camera permission granted";
-          qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted",
-                                                      true);
-        } else {
-          qWarning() << "Camera permission denied";
-          qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted",
-                                                      false);
-        }
-      });
+  permissionChecker.setCameraCheckPending(true);
+  app.requestPermission(cameraPermission, [&qmlEngine, &permissionChecker](
+                                              const QPermission &permission) {
+    if (permission.status() == Qt::PermissionStatus::Granted) {
+      qDebug() << "Camera permission granted";
+      permissionChecker.setCameraPermissionGranted(true);
+    } else {
+      qWarning() << "Camera permission denied";
+      qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted",
+                                                  false);
+      permissionChecker.setCameraPermissionGranted(false);
+    }
+  });
 #else
+  permissionChecker.setCameraPermissionGranted(true);
+  permissionChecker.setCameraCheckPending(false);
   qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted", true);
-  qmlEngine.rootContext()->setContextProperty("cameraCheckPending", false);
+
 #endif
 
   qmlEngine.load(QUrl("qrc:/main.qml"));

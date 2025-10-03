@@ -25,6 +25,16 @@ Window {
         }
     }
 
+    PermissionChecker {
+        id: permissionChecker
+        onCameraPermissionGrantedChanged: {
+            if (cameraPermissionGranted) {
+                captureSession.camera.start();
+            }
+        }
+        onCameraCheckPendingChanged: cameraCheckPending = permissionChecker.cameraCheckPending
+    }
+
     Item {
         id: root
         focus: true
@@ -88,13 +98,13 @@ Window {
             PermissionDenied {
                 id: permissionDenied
                 anchors.fill: parent
-                visible: !cameraPermissionGranted && !cameraCheckPending
+                visible: permissionChecker.cameraPermissionGranted === false && !cameraCheckPending
             }
 
             Item {
                 id: cameraContainer
                 anchors.fill: parent
-                visible: cameraPermissionGranted && !cameraCheckPending
+                visible: permissionChecker.cameraPermissionGranted && !cameraCheckPending
 
                 CaptureSession {
                     id: captureSession
@@ -106,7 +116,9 @@ Window {
                     videoOutput: preview
 
                     Component.onCompleted: {
-                        camera.start();
+                        if (cameraPermissionGranted) {
+                            camera.start();
+                        }
                     }
                 }
 
