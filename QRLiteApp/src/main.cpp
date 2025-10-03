@@ -31,6 +31,8 @@ int main(int argc, char **argv) {
     qDebug() << "Camera found:" << cameraDevice.description();
   }
 
+  qmlEngine.rootContext()->setContextProperty("cameraCheckPending", true);
+
 #ifdef __ANDROID__
   QCameraPermission cameraPermission;
   app.requestPermission(
@@ -47,6 +49,7 @@ int main(int argc, char **argv) {
       });
 #else
   qmlEngine.rootContext()->setContextProperty("cameraPermissionGranted", true);
+  qmlEngine.rootContext()->setContextProperty("cameraCheckPending", false);
 #endif
 
   qmlEngine.load(QUrl("qrc:/main.qml"));

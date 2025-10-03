@@ -82,19 +82,19 @@ Window {
             PermissionCheck {
                 id: permissionCheck
                 anchors.fill: parent
-                visible: true
+                visible: cameraCheckPending
             }
 
             PermissionDenied {
                 id: permissionDenied
                 anchors.fill: parent
-                visible: false
+                visible: !cameraPermissionGranted && !cameraCheckPending
             }
 
             Item {
                 id: cameraContainer
                 anchors.fill: parent
-                visible: false
+                visible: cameraPermissionGranted && !cameraCheckPending
 
                 CaptureSession {
                     id: captureSession
@@ -112,7 +112,7 @@ Window {
 
                 VideoOutput {
                     id: preview
-                    visible: cameraPermissionGranted && camera.status === Camera.ActiveStatus
+                    visible: camera.status === Camera.ActiveStatus
                     anchors.fill: parent
                 }
             }
