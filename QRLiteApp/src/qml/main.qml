@@ -73,31 +73,35 @@ Window {
         Rectangle {
             id: cameraView
             width: parent.width - horizontalMargin * 2
-            height: parent.height - scanResultBox.height- verticalMargin * 2 - spacing
+            height: parent.height - scanResultBox.height - verticalMargin * 2 - spacing
             color: "transparent"
             anchors.bottom: parent.bottom
             anchors.bottomMargin: spacing
             anchors.horizontalCenter: parent.horizontalCenter
 
-            CaptureSession {
-                id: captureSession
-                camera: Camera {
-                    id: camera
-                    focusMode: Camera.FocusModeAutoNear
-                }
-
-                videoOutput: preview
-
-                Component.onCompleted: {
-                       camera.start();
-                   
-                }
-            }
-
-            VideoOutput {
-                id: preview
-                visible: cameraPermissionGranted && camera.status === Camera.ActiveStatus
+            Item {
+                id: cameraContainer
                 anchors.fill: parent
+
+                CaptureSession {
+                    id: captureSession
+                    camera: Camera {
+                        id: camera
+                        focusMode: Camera.FocusModeAutoNear
+                    }
+
+                    videoOutput: preview
+
+                    Component.onCompleted: {
+                        camera.start();
+                    }
+                }
+
+                VideoOutput {
+                    id: preview
+                    visible: cameraPermissionGranted && camera.status === Camera.ActiveStatus
+                    anchors.fill: parent
+                }
             }
         }
     }
