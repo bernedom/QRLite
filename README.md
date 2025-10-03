@@ -86,6 +86,10 @@ Then start the emulator:
     * select from file system
 * Write QR codes (later)
 
+## Tech enhancements
+* Add benchmark for QR code reading
+
+
 ### Extended features for later releases
 
 * Sanity checks for urls etc
@@ -93,3 +97,4 @@ Then start the emulator:
 * Open proper app for detected types
 * allow to select camera
 * turn on/off flashlight
+
