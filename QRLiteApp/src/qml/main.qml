@@ -16,6 +16,16 @@ Window {
     readonly property int spacing: 20
     readonly property int textMargin: 10
 
+    function startCameraIfPermitted(permitted: bool) {
+        if (permitted) {
+            camera.start();
+        }
+    }
+
+    Component.onCompleted: {
+        permissionChecker.cameraPermissionChanged.connect(startCameraIfPermitted);
+    }
+
     CodeReader {
         id: codeReader
         videoSink: preview.videoSink
@@ -93,7 +103,7 @@ Window {
             PermissionCheck {
                 id: permissionCheck
                 anchors.fill: parent
-                visible: false //permissionChecker.cameraCheckPending
+                visible: permissionChecker.cameraCheckPending
             }
 
             PermissionDenied {
@@ -105,7 +115,7 @@ Window {
             Item {
                 id: cameraContainer
                 anchors.fill: parent
-                visible: true // permissionChecker.cameraPermissionGranted && !permissionChecker.cameraCheckPending
+                visible: permissionChecker.cameraPermissionGranted && !permissionChecker.cameraCheckPending
 
                 CaptureSession {
                     id: captureSession
@@ -117,9 +127,9 @@ Window {
                     videoOutput: preview
 
                     Component.onCompleted: {
-                        // if (permissionChecker.cameraPermissionGranted) {
-                        camera.start();
-                        //}
+                        if (permissionChecker.cameraPermissionGranted) {
+                            camera.start();
+                        }
                     }
                 }
 
