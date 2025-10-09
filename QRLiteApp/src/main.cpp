@@ -17,23 +17,6 @@
 
 #include "PermissionChecker.h"
 
-void checkPermissions(QRLite::PermissionChecker &permissionChecker,
-                      QGuiApplication &app) {
-
-  QCameraPermission cameraPermission;
-  permissionChecker.setCameraCheckPending(true);
-  app.requestPermission(
-      cameraPermission, [&permissionChecker](const QPermission &permission) {
-        if (permission.status() == Qt::PermissionStatus::Granted) {
-          qDebug() << "Camera permission granted";
-          permissionChecker.setCameraPermissionGranted(true);
-        } else {
-          qWarning() << "Camera permission denied";
-          permissionChecker.setCameraPermissionGranted(false);
-        }
-      });
-}
-
 int main(int argc, char **argv) {
 
   qRegisterMetaType<QRLite::CodeReader>("CodeReader");
@@ -57,11 +40,18 @@ int main(int argc, char **argv) {
   }
 
 #ifdef __ANDROID__
-  QTimer timer;
-  timer.singleShot(50, [&permissionChecker, &app]() {
-    checkPermissions(permissionChecker, app);
-  });
-  timer.start();
+  QCameraPermission cameraPermission;
+  permissionChecker.setCameraCheckPending(true);
+  app.requestPermission(
+      cameraPermission, [&permissionChecker](const QPermission &permission) {
+        if (permission.status() == Qt::PermissionStatus::Granted) {
+          qDebug() << "Camera permission granted";
+          permissionChecker.setCameraPermissionGranted(true);
+        } else {
+          qWarning() << "Camera permission denied";
+          permissionChecker.setCameraPermissionGranted(false);
+        }
+      });
 #else
   permissionChecker.setCameraPermissionGranted(true);
   permissionChecker.setCameraCheckPending(false);

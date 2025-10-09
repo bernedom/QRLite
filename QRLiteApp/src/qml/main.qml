@@ -79,16 +79,6 @@ Window {
                 color: "black"
                 font.pointSize: 16
             }
-
-            Text {
-                id: scanResultHint
-                text: "permission " + permissionChecker.cameraPermissionGranted + ", pending " + permissionChecker.cameraCheckPending
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: textMargin
-                anchors.horizontalCenter: parent.horizontalCenter
-                color: "gray"
-                font.pointSize: 12
-            }
         }
 
         Rectangle {
