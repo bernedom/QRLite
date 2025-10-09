@@ -1,8 +1,8 @@
 #pragma once
 
 #include <QObject>
-#include <qguiapplication.h>
-#include <qtmetamacros.h>
+#include <QtCore/QDebug>
+#include <qflags.h>
 
 class QGuiApplication;
 
@@ -19,17 +19,21 @@ public:
                  setCameraCheckPending NOTIFY cameraCheckPendingChanged)
 
   void setCameraPermissionGranted(bool granted) {
+    qDebug() << "Camera permission granted:" << granted;
     setCameraCheckPending(false);
     if (granted != _cameraPermissionGranted) {
       _cameraPermissionGranted = granted;
       emit cameraPermissionChanged(granted);
+      qDebug() << "Emitted cameraPermissionChanged signal";
     }
   }
 
   void setCameraCheckPending(bool pending) {
+    qDebug() << "Camera check pending:" << pending;
     if (pending != _cameraCheckPending) {
       _cameraCheckPending = pending;
       emit cameraCheckPendingChanged(pending);
+      qDebug() << "Emitted cameraCheckPendingChanged signal";
     }
   }
 

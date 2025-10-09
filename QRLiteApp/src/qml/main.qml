@@ -25,20 +25,6 @@ Window {
         }
     }
 
-    PermissionChecker {
-        id: permissionChecker
-        onCameraPermissionGrantedChanged: {
-            if (permissionChecker.cameraPermissionGranted) {
-                captureSession.camera.start();
-            }
-            scanResultText.text = "Permission changed: " + permissionChecker.cameraPermissionGranted;
-            console.log("Permission changed: " + permissionChecker.cameraPermissionGranted);
-        }
-        onCameraCheckPendingChanged: {
-            cameraCheckPending = permissionChecker.cameraCheckPending;
-        }
-    }
-
     Item {
         id: root
         focus: true
@@ -46,6 +32,7 @@ Window {
 
         Keys.onPressed: event => {
             if (event.key === Qt.Key_Escape) {
+                console.log("Escape pressed, quitting.");
                 Qt.quit();
             }
         }
@@ -82,6 +69,16 @@ Window {
                 color: "black"
                 font.pointSize: 16
             }
+
+            Text {
+                id: scanResultHint
+                text: "permission " + permissionChecker.cameraPermissionGranted + ", pending " + permissionChecker.cameraCheckPending
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: textMargin
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "gray"
+                font.pointSize: 12
+            }
         }
 
         Rectangle {
@@ -96,7 +93,7 @@ Window {
             PermissionCheck {
                 id: permissionCheck
                 anchors.fill: parent
-                visible: permissionChecker.cameraCheckPending
+                visible: false //permissionChecker.cameraCheckPending
             }
 
             PermissionDenied {
@@ -108,7 +105,7 @@ Window {
             Item {
                 id: cameraContainer
                 anchors.fill: parent
-                visible: permissionChecker.cameraPermissionGranted && !cameraCheckPending
+                visible: true // permissionChecker.cameraPermissionGranted && !permissionChecker.cameraCheckPending
 
                 CaptureSession {
                     id: captureSession
@@ -120,9 +117,9 @@ Window {
                     videoOutput: preview
 
                     Component.onCompleted: {
-                        if (permissionChecker.cameraPermissionGranted) {
-                            camera.start();
-                        }
+                        // if (permissionChecker.cameraPermissionGranted) {
+                        camera.start();
+                        //}
                     }
                 }
 
