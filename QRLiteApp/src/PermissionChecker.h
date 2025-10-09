@@ -19,11 +19,11 @@ public:
                  setCameraCheckPending NOTIFY cameraCheckPendingChanged)
 
   void setCameraPermissionGranted(bool granted) {
+    setCameraCheckPending(false);
     if (granted != _cameraPermissionGranted) {
       _cameraPermissionGranted = granted;
       emit cameraPermissionChanged(granted);
     }
-    setCameraCheckPending(false);
   }
 
   void setCameraCheckPending(bool pending) {

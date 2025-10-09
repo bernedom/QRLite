@@ -28,11 +28,15 @@ Window {
     PermissionChecker {
         id: permissionChecker
         onCameraPermissionGrantedChanged: {
-            if (cameraPermissionGranted) {
+            if (permissionChecker.cameraPermissionGranted) {
                 captureSession.camera.start();
             }
+            scanResultText.text = "Permission changed: " + permissionChecker.cameraPermissionGranted;
+            console.log("Permission changed: " + permissionChecker.cameraPermissionGranted);
         }
-        onCameraCheckPendingChanged: cameraCheckPending = permissionChecker.cameraCheckPending
+        onCameraCheckPendingChanged: {
+            cameraCheckPending = permissionChecker.cameraCheckPending;
+        }
     }
 
     Item {
@@ -92,13 +96,13 @@ Window {
             PermissionCheck {
                 id: permissionCheck
                 anchors.fill: parent
-                visible: cameraCheckPending
+                visible: permissionChecker.cameraCheckPending
             }
 
             PermissionDenied {
                 id: permissionDenied
                 anchors.fill: parent
-                visible: permissionChecker.cameraPermissionGranted === false && !cameraCheckPending
+                visible: permissionChecker.cameraPermissionGranted === false && !permissionChecker.cameraCheckPending
             }
 
             Item {
@@ -116,7 +120,7 @@ Window {
                     videoOutput: preview
 
                     Component.onCompleted: {
-                        if (cameraPermissionGranted) {
+                        if (permissionChecker.cameraPermissionGranted) {
                             camera.start();
                         }
                     }
