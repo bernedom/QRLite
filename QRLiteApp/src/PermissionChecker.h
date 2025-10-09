@@ -24,7 +24,6 @@ public:
     if (granted != _cameraPermissionGranted) {
       _cameraPermissionGranted = granted;
       emit cameraPermissionChanged(granted);
-      qDebug() << "Emitted cameraPermissionChanged signal";
     }
   }
 
@@ -33,7 +32,6 @@ public:
     if (pending != _cameraCheckPending) {
       _cameraCheckPending = pending;
       emit cameraCheckPendingChanged(pending);
-      qDebug() << "Emitted cameraCheckPendingChanged signal";
     }
   }
 

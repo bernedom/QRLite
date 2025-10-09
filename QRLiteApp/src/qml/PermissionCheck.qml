@@ -4,12 +4,12 @@ Rectangle {
     id: permissionCheck
     width: parent.width
     height: parent.height
-    color: "black"
+    color: "transparent"
 
     Text {
         id: permissionText
         text: "Checking camera permissions. Please grant the camera permission if prompted."
-        color: "white"
+        color: "gray"
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
         anchors.centerIn: parent
