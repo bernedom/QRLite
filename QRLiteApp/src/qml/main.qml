@@ -50,13 +50,13 @@ Window {
 
         RowLayout {
             id: topLayout
-            width: parent.width
+            width: parent.width - horizontalMargin * 2
             anchors.top: parent.top
-            anchors.left: parent.left
+            anchors.horizontalCenter: parent.horizontalCenter
 
             Rectangle {
                 id: scanResultBox
-                width: parent.width - horizontalMargin * 2 - 20
+                width: parent.width - menu.width - spacing
                 // Height grows with text, up to 1/3 of window height
                 height: Math.min(scanResultText.paintedHeight + spacing, mainWindow.height / 3)
                 color: "transparent"
@@ -89,8 +89,8 @@ Window {
 
             Rectangle {
                 id: menu
-                width: 30
-                height: 30
+                width: height
+                height: scanResultBox.height
                 color: "green"
                 border.color: "black"
                 border.width: 2
