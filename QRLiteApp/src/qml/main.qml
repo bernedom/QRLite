@@ -87,14 +87,14 @@ Window {
                 }
             }
 
-            Rectangle {
+            Image {
                 id: menu
-                width: height
-                height: scanResultBox.height
-                color: "green"
-                border.color: "black"
-                border.width: 2
-                radius: 6
+                width: 30
+                height: width
+                source: "images/burger_menu.svg"
+                sourceSize.width: width
+                sourceSize.height: width
+
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
                 Layout.topMargin: verticalMargin
             }

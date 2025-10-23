@@ -8,5 +8,6 @@
         <file>images/test.png</file>
         <file>images/valid_qr_code_qrlite.png</file>
         <file>images/app_icon.png</file>
+        <file>images/burger_menu.svg</file>
     </qresource>
 </RCC>
