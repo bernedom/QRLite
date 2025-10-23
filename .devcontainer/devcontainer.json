@@ -1,5 +1,5 @@
 {
-    "image": "bernedom/qtandroidbuilder:7e39863984f500fe6d6b00d8bc9a2efb686b276e",
+    "image": "bernedom/qtandroidbuilder:a0b5ec7b5a75e1d354a6b043609cb7be52ad3d6f",
     "customizations": {
         "vscode": {
             "extensions": [
