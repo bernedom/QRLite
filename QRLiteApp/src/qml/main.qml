@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtMultimedia
 import QtQuick.Controls
+import QtQuick.Layouts
 import QRLite 1.0
 
 Window {
@@ -47,37 +48,55 @@ Window {
             }
         }
 
-        Rectangle {
-            id: scanResultBox
-            width: parent.width - horizontalMargin * 2
-            // Height grows with text, up to 1/3 of window height
-            height: Math.min(scanResultText.paintedHeight + spacing, mainWindow.height / 3)
-            color: "transparent"
-            border.color: "black"
-            border.width: 2
-            radius: 6
-            anchors.horizontalCenter: parent.horizontalCenter
+        RowLayout {
+            id: topLayout
+            width: parent.width
             anchors.top: parent.top
-            anchors.topMargin: verticalMargin
+            anchors.left: parent.left
 
-            Text {
-                id: scanResultText
-                objectName: "scanResultText"
-                text: ""
-                textFormat: Text.RichText
-                wrapMode: Text.Wrap
-                onLinkActivated: function (link) {
-                    Qt.openUrlExternally(link);
+            Rectangle {
+                id: scanResultBox
+                width: parent.width - horizontalMargin * 2 - 20
+                // Height grows with text, up to 1/3 of window height
+                height: Math.min(scanResultText.paintedHeight + spacing, mainWindow.height / 3)
+                color: "transparent"
+                border.color: "black"
+                border.width: 2
+                radius: 6
+                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                Layout.topMargin: verticalMargin
+
+                Text {
+                    id: scanResultText
+                    objectName: "scanResultText"
+                    text: ""
+                    textFormat: Text.RichText
+                    wrapMode: Text.Wrap
+                    onLinkActivated: function (link) {
+                        Qt.openUrlExternally(link);
+                    }
+
+                    anchors.top: parent.top
+                    anchors.topMargin: textMargin
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.leftMargin: textMargin
+                    anchors.rightMargin: textMargin
+                    color: "black"
+                    font.pointSize: 16
                 }
+            }
 
-                anchors.top: parent.top
-                anchors.topMargin: textMargin
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.leftMargin: textMargin
-                anchors.rightMargin: textMargin
-                color: "black"
-                font.pointSize: 16
+            Rectangle {
+                id: menu
+                width: 30
+                height: 30
+                color: "green"
+                border.color: "black"
+                border.width: 2
+                radius: 6
+                Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                Layout.topMargin: verticalMargin
             }
         }
 
