@@ -9,11 +9,13 @@
 #include <QtCore/QPermission>
 #include <QtCore/QTimer>
 #include <QtGui/QIcon>
+#include <QtGui/QPalette>
 #include <QtMultimedia/QCamera>
 #include <QtMultimedia/QMediaDevices>
 
 #include <QRLite/CodeReader.h>
 #include <QRLite/Scanner.h>
+#include <qpalette.h>
 
 #include "PermissionChecker.h"
 
@@ -28,6 +30,12 @@ int main(int argc, char **argv) {
   QGuiApplication app(argc, argv);
   app.setApplicationName("QRLite");
   app.setWindowIcon(QIcon(":/images/app_icon.png"));
+
+  // Set the link color to a dark shade
+  QPalette palette;
+  palette.setColor(QPalette::Link, QColor("#121212"));
+  app.setPalette(palette);
+
   QQmlApplicationEngine qmlEngine;
 
   QRLite::PermissionChecker permissionChecker;
