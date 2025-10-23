@@ -1,3 +1,4 @@
+#include "QRLite/Scanner.h"
 #include <QRLite/CodeWriter.h>
 #include <catch2/catch_test_macros.hpp>
 
@@ -12,4 +13,20 @@ TEST_CASE("Writing a non-empty string returns a non-empty image",
   QRLite::CodeWriter codeWriter;
   const auto result = codeWriter.writeCode("Hello, World!");
   REQUIRE(result.isNull() == false);
+}
+
+TEST_CASE(
+    "Writing a string to an image and reading it back returns the same string",
+    "[CodeWriter][Scanner]") {
+  QRLite::CodeWriter codeWriter;
+  QRLite::Scanner scanner;
+
+  const QString originalString = "Test String";
+  const auto writtenImage = codeWriter.writeCode(originalString);
+
+  // Simulate reading the image back
+  const auto scanResult = scanner.scan(writtenImage);
+
+  REQUIRE(scanResult.has_value() == true);
+  REQUIRE(scanResult.value() == originalString);
 }
