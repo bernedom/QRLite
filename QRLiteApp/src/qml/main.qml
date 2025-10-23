@@ -91,12 +91,12 @@ Window {
                 id: menu
                 width: 30
                 height: width
-                source: "images/burger_menu.svg"
+                source: "images/download_button.svg"
                 sourceSize.width: width
                 sourceSize.height: width
 
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                Layout.topMargin: verticalMargin
+                Layout.topMargin: verticalMargin + scanResultBox.border.width
             }
         }
 
