@@ -24,4 +24,11 @@ QImage CodeWriter::writeCode(const QString &code) {
 
   return image;
 }
+
+void CodeWriter::saveCodeToFile(const QString &code, const QString &filePath) {
+  QImage image = writeCode(code);
+  if (!image.isNull()) {
+    image.save(filePath);
+  }
+}
 } // namespace QRLite

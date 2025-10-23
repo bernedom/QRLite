@@ -24,8 +24,6 @@ TEST_CASE(
   const QString originalString = "Test String";
   const auto writtenImage = codeWriter.writeCode(originalString);
 
-  writtenImage.save("test_qr_code.png"); // Save for debugging if needed
-
   // Simulate reading the image back
   const auto scanResult = scanner.scan(writtenImage);
 
