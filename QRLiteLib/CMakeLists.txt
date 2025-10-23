@@ -9,8 +9,14 @@ target_link_libraries(QRLiteLib PUBLIC Qt6::Gui Qt6::Core Qt6::Multimedia
                                        ZXing::ZXing)
 target_include_directories(QRLiteLib PUBLIC include)
 target_sources(
-  QRLiteLib PRIVATE src/Scanner.cpp include/QRLite/Scanner.h src/CodeReader.cpp
-                    include/QRLite/CodeReader.h src/CodeParser.cpp)
+  QRLiteLib
+  PRIVATE src/Scanner.cpp
+          include/QRLite/Scanner.h
+          src/CodeReader.cpp
+          include/QRLite/CodeReader.h
+          src/CodeParser.cpp
+          src/CodeWriter.cpp
+          include/QRLite/CodeWriter.h)
 
 target_compile_features(QRLiteLib PUBLIC cxx_std_23)
 
