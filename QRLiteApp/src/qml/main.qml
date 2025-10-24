@@ -104,6 +104,7 @@ Window {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
+                        codeWriter.saveCodeToFile("yupiduu", "./qrlite_generated_code.png");
                     }
                 }
             }
