@@ -27,6 +27,10 @@ Window {
         permissionChecker.cameraPermissionChanged.connect(startCameraIfPermitted);
     }
 
+    CodeWriter {
+        id: codeWriter
+    }
+
     CodeReader {
         id: codeReader
         videoSink: preview.videoSink
@@ -97,6 +101,11 @@ Window {
 
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
                 Layout.topMargin: verticalMargin + scanResultBox.border.width
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                    }
+                }
             }
         }
 
@@ -112,19 +121,19 @@ Window {
             PermissionCheck {
                 id: permissionCheck
                 anchors.fill: parent
-                visible: permissionChecker.cameraCheckPending
+                visible: permissionChecker && permissionChecker.cameraCheckPending
             }
 
             PermissionDenied {
                 id: permissionDenied
                 anchors.fill: parent
-                visible: permissionChecker.cameraPermissionGranted === false && !permissionChecker.cameraCheckPending
+                visible: permissionChecker && permissionChecker.cameraPermissionGranted === false && !permissionChecker.cameraCheckPending
             }
 
             Item {
                 id: cameraContainer
                 anchors.fill: parent
-                visible: permissionChecker.cameraPermissionGranted && !permissionChecker.cameraCheckPending
+                visible: permissionChecker && permissionChecker.cameraPermissionGranted && !permissionChecker.cameraCheckPending
 
                 CaptureSession {
                     id: captureSession

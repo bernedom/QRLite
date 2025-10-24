@@ -15,17 +15,21 @@
 
 #include <QRLite/CodeReader.h>
 #include <QRLite/Scanner.h>
+#include <qobject.h>
 #include <qpalette.h>
 
 #include "PermissionChecker.h"
+#include "QRLite/CodeWriter.h"
 
 int main(int argc, char **argv) {
 
   qRegisterMetaType<QRLite::CodeReader>("CodeReader");
   qRegisterMetaType<QRLite::PermissionChecker>("PermissionChecker");
+  qRegisterMetaType<QRLite::CodeWriter>("CodeWriter");
   qmlRegisterType<QRLite::CodeReader>("QRLite", 1, 0, "CodeReader");
   qmlRegisterType<QRLite::PermissionChecker>("QRLite", 1, 0,
                                              "PermissionChecker");
+  qmlRegisterType<QRLite::CodeWriter>("QRLite", 1, 0, "CodeWriter");
 
   QGuiApplication app(argc, argv);
   app.setApplicationName("QRLite");
