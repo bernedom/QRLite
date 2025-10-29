@@ -3,6 +3,7 @@ import QtQuick.Window
 import QtMultimedia
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtCore
 import QRLite 1.0
 
 Window {
@@ -106,6 +107,7 @@ Window {
                     anchors.fill: parent
                     onClicked: {
                         codeWriter.saveCodeToFile("yupiduu", picturesFolder + "qrlite_generated_code.png");
+                        console.log("Saved generated code to " + picturesFolder);
                     }
                 }
             }

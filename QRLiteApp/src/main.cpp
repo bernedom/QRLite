@@ -7,7 +7,9 @@
 
 #include <QtCore/QDirIterator>
 #include <QtCore/QPermission>
+#include <QtCore/QStandardPaths>
 #include <QtCore/QTimer>
+
 #include <QtGui/QIcon>
 #include <QtGui/QPalette>
 #include <QtMultimedia/QCamera>
@@ -30,6 +32,16 @@ int main(int argc, char **argv) {
   qmlRegisterType<QRLite::PermissionChecker>("QRLite", 1, 0,
                                              "PermissionChecker");
   qmlRegisterType<QRLite::CodeWriter>("QRLite", 1, 0, "CodeWriter");
+
+  const auto storagePath =
+      QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) +
+      "/QRLite/";
+
+  QDir dir(storagePath);
+
+  if (!dir.exists()) {
+    dir.mkpath(storagePath);
+  }
 
   QGuiApplication app(argc, argv);
   app.setApplicationName("QRLite");
