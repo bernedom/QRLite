@@ -107,7 +107,7 @@ Window {
                     anchors.fill: parent
                     onClicked: {
                         codeWriter.saveCodeToFile("yupiduu", picturesFolder + "qrlite_generated_code.png");
-                        console.log("Saved generated code to " + picturesFolder);
+                        statusText.text = "QR code saved to " + picturesFolder + "qrlite_generated_code.png";
                     }
                 }
             }
@@ -160,6 +160,24 @@ Window {
                     visible: camera.status === Camera.ActiveStatus
                     anchors.fill: parent
                 }
+            }
+        }
+
+        Rectangle {
+            id: statusBar
+            width: parent.width
+            height: 24
+            color: "#E0E0E0"
+            anchors.bottom: parent.bottom
+            visible: statusText.text !== ""
+            Text {
+                id: statusText
+                text: ""
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                color: "black"
+                font.pointSize: 8
             }
         }
     }
