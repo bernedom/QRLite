@@ -73,3 +73,22 @@ TEST_CASE("Saving a QR code to a file creates a valid image file",
   QImage loadedImage(tempFile.fileName());
   REQUIRE(loadedImage.isNull() == false);
 }
+
+TEST_CASE("Save QRCode to a file using a file:// url", "[CodeWriter]") {
+  QRLite::CodeWriter codeWriter;
+  const QString testString = "File URL Save Test";
+  TempFile tempFile;
+
+  const QString fileUrl = "file://" + tempFile.fileName();
+
+  // Save the QR code to a file using file:// URL
+  codeWriter.saveCodeToFile(testString, fileUrl);
+
+  QFile file(tempFile.fileName());
+  REQUIRE(tempFile.fileName().isEmpty() == false);
+  REQUIRE(file.exists() == true);
+
+  // Load the saved image
+  QImage loadedImage(tempFile.fileName());
+  REQUIRE(loadedImage.isNull() == false);
+}

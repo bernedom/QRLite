@@ -3,7 +3,9 @@
 #include <ZXing/BarcodeFormat.h>
 #include <ZXing/BitMatrix.h>
 #include <ZXing/MultiFormatWriter.h>
+#include <qhashfunctions.h>
 #include <qtypes.h>
+#include <qurl.h>
 
 namespace QRLite {
 
@@ -26,9 +28,17 @@ QImage CodeWriter::writeCode(const QString &code) {
 }
 
 void CodeWriter::saveCodeToFile(const QString &code, const QString &filePath) {
+
   QImage image = writeCode(code);
   if (!image.isNull()) {
-    image.save(filePath);
+
+    QString cleanFilePath = filePath;
+    QUrl url(filePath);
+    if (url.isValid() && url.isLocalFile()) {
+      cleanFilePath = url.toLocalFile();
+    }
+
+    image.save(cleanFilePath);
   }
 }
 } // namespace QRLite
