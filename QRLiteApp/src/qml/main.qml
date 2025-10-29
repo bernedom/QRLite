@@ -16,6 +16,7 @@ Window {
     readonly property int verticalMargin: 40
     readonly property int spacing: 20
     readonly property int textMargin: 10
+    readonly property url picturesFolder: StandardPaths.writableLocation(StandardPaths.PicturesLocation) + "/QRLite/"
 
     function startCameraIfPermitted(permitted: bool) {
         if (permitted) {
@@ -104,7 +105,7 @@ Window {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        codeWriter.saveCodeToFile("yupiduu", "./qrlite_generated_code.png");
+                        codeWriter.saveCodeToFile("yupiduu", picturesFolder + "qrlite_generated_code.png");
                     }
                 }
             }
