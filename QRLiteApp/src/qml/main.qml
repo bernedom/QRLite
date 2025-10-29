@@ -162,14 +162,22 @@ Window {
                 }
             }
         }
-
         Rectangle {
             id: statusBar
             width: parent.width
             height: 24
             color: "#E0E0E0"
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: visible ? 0 : -height
             visible: statusText.text !== ""
+
+            Behavior on anchors.bottomMargin {
+                NumberAnimation {
+                    duration: 300
+                    easing.type: Easing.InOutQuad
+                }
+            }
+
             Text {
                 id: statusText
                 text: ""
@@ -178,6 +186,22 @@ Window {
                 anchors.leftMargin: 10
                 color: "black"
                 font.pointSize: 8
+
+                onTextChanged: function (text) {
+                    if (text !== "") {
+                        hideTimer.restart();
+                    }
+                }
+            }
+
+            Timer {
+                id: hideTimer
+                interval: 3000
+                running: false
+                repeat: false
+                onTriggered: {
+                    statusText.text = "";
+                }
             }
         }
     }
