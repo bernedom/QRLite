@@ -115,7 +115,7 @@
             ],
             "cacheVariables": {
                 "QT_ANDROID_ABIS": "armeabi-v7a;arm64-v8a;x86_64",
-                "QT_ANDROID_BUILD_ALL_ABIS": "ON"
+                "QT_ANDROID_BUILD_ALL_ABIS": "OFF"
             }
         },
         {
@@ -163,7 +163,8 @@
                 "QT_PATH_ANDROID_ABI_armeabi-v7a": "/opt/Qt/6.6.1/android_armv7/",
                 "QT_PATH_ANDROID_ABI_arm64-v8a": "/opt/Qt/6.6.1/android_arm64_v8a/",
                 "QT_PATH_ANDROID_ABI_x86_64": "/opt/Qt/6.6.1/android_x86_64/",
-                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/",
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_armv7/;/opt/Qt/6.6.1/android_arm64_v8a/;/opt/Qt/6.6.1/android_x86_64/"
             },
             "environment": {
                 "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"

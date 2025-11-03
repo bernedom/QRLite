@@ -7,10 +7,20 @@ project(
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# set(CMAKE_FIND_DEBUG_MODE TRUE)
 find_package(
   Qt6
   COMPONENTS Core Gui Multimedia Qml Quick
   REQUIRED)
+# set(CMAKE_FIND_DEBUG_MODE FALSE)
+
+message(
+  STATUS
+    "QT
+    has
+    been
+    found
+    ${Qt6_FOUND}")
 
 find_package(ZXing REQUIRED)
 
@@ -21,7 +31,13 @@ endif()
 include(CTest)
 
 get_target_property(ZXINGdirs ZXing::ZXing INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "ZXing include dirs: ${ZXINGdirs}")
+message(
+  STATUS
+    "ZXing
+    include
+    dirs:
+    ${ZXINGdirs}
+    ")
 
 add_subdirectory(QRLiteLib)
 add_subdirectory(QRLiteApp)
