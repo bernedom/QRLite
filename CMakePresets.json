@@ -108,6 +108,17 @@
             }
         },
         {
+            "name": "android-all-archs",
+            "hidden": true,
+            "inherits": [
+                "android-ndk"
+            ],
+            "cacheVariables": {
+                "QT_ANDROID_ABIS": "armeabi-v7a;arm64-v8a;x86_64",
+                "QT_ANDROID_BUILD_ALL_ABIS": "ON"
+            }
+        },
+        {
             "name": "Qt-desktop",
             "hidden": true,
             "cacheVariables": {
@@ -140,6 +151,19 @@
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_x86_64/"
+            },
+            "environment": {
+                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+            }
+        },
+        {
+            "name": "Qt-android-all-archs",
+            "hidden": true,
+            "cacheVariables": {
+                "QT_PATH_ANDROID_ABI_armeabi-v7a": "/opt/Qt/6.6.1/android_armv7/",
+                "QT_PATH_ANDROID_ABI_arm64-v8a": "/opt/Qt/6.6.1/android_arm64_v8a/",
+                "QT_PATH_ANDROID_ABI_x86_64": "/opt/Qt/6.6.1/android_x86_64/",
+                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
             },
             "environment": {
                 "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
@@ -253,6 +277,32 @@
                 "Qt-android-x86_64",
                 "ci-ninja",
                 "android-x86_64",
+                "clang-compiler-flags"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "ci-ninja-android-all-archs-debug",
+            "displayName": "Ninja Android all archs Debug",
+            "inherits": [
+                "Qt-android-all-archs",
+                "ci-ninja",
+                "android-all-archs",
+                "clang-compiler-flags"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "ci-ninja-android-all-archs-release",
+            "displayName": "Ninja Android all archs Release",
+            "inherits": [
+                "Qt-android-all-archs",
+                "ci-ninja",
+                "android-all-archs",
                 "clang-compiler-flags"
             ],
             "cacheVariables": {

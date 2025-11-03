@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
   qmlRegisterType<QRLite::CodeWriter>("QRLite", 1, 0, "CodeWriter");
 
   const auto storagePath =
-      QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) +
+      QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) +
       "/QRLite/";
 
   QDir dir(storagePath);
