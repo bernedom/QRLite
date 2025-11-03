@@ -98,3 +98,10 @@ Then start the emulator:
 * allow to select camera
 * turn on/off flashlight
 
+## build multi arch android aab
+
+1. build all individual archs in debug mode:
+2. build all archs bundle in debug mode using qt-cmake
+3. build using cmake
+
+/opt/Qt/6.6.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-debug

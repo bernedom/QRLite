@@ -33,5 +33,6 @@
 
 build/
 build_android/
+build_android_*
 .vscode/   
 .cache/ 
