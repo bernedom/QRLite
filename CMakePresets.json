@@ -163,7 +163,6 @@
             "name": "Qt-android-all-archs",
             "hidden": true,
             "cacheVariables": {
-                "MULTI_ARCH_BUILD": "ON",
                 "QT_CHAINLOAD_TOOLCHAIN_FILE": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
                 "CONAN_ARM64_DIR": "${sourceDir}/build_android_arm64-v8a/conan",
                 "CONAN_ARMEABI_V7A_DIR": "${sourceDir}/build_android_armeabi-v7a/conan",

@@ -18,12 +18,6 @@ set_target_properties(
              QT_ANDROID_PACKAGE_SOURCE_DIR
              "${CMAKE_CURRENT_SOURCE_DIR}/android")
 
-# Print all known target properties and their values for QRLite
-# get_target_property(PSD QRLite QT_ANDROID_PACKAGE_SOURCE_DIR)
-get_target_property(target_type QRLite TYPE)
-message(STATUS "Target 'QRLite' type: ${target_type}")
-
-qt_finalize_target(QRLite)
 # todo set QT_ANDROID_APP_ICON "path to icon" see here for foll properties:
 # https://doc.qt.io/qt-6/cmake-property-reference.html see here for foll
 # properties: https://doc.qt.io/qt-6/cmake-property-reference.html
