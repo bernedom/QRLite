@@ -100,11 +100,15 @@ Then start the emulator:
 
 ## build multi arch android aab
 
-1. build all individual archs in debug mode:
+1. configure all individual archs in debug mode:
     1. cmake --preset ci-ninja-android-armeabi-v7a-debug
     2. cmake --preset ci-ninja-android-arm64-v8a-debug
     3. cmake --preset ci-ninja-android-x86_64-debug
-2. build all archs bundle in debug mode using qt-cmake
+2. build all individual archs in debug mode:
+    1. cmake --build ./build_android_armeabi-v7a
+    2. cmake --build ./build_android_arm64-v8a
+    3. cmake --build ./build_android_x86_64
+2. collect all archs bundle in debug mode using qt-cmake
+    /opt/Qt/6.6.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-debug
 3. build using cmake
 
-/opt/Qt/6.6.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-debug
