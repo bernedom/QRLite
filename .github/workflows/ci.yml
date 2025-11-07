@@ -97,5 +97,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: aab-${{ matrix.build_type }}
-          path: ./build_android_bundle/QRLiteApp/android-build/QRLite.aab
+          path: ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/${{ matrix.build_type }}/android-build-${{ matrix.build_type }}.aab
           retention-days: 7
