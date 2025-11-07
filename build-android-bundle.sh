@@ -9,3 +9,5 @@ cmake --build ./build_android_arm64-v8a
 cmake --build ./build_android_x86_64
 
 /opt/Qt/6.6.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-debug
+
+cmake --build ./build_android_bundle/ --target aab

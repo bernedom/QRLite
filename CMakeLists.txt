@@ -7,6 +7,7 @@ project(
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# This is a hack to make multi-ABI builds work with Conan and Qt
 if(NOT CONAN_ARM64_DIR)
   set(CONAN_ARM64_DIR "${CMAKE_SOURCE_DIR}/build_android_arm64-v8a/conan")
 endif()
@@ -23,7 +24,10 @@ if(ANDROID)
     STATUS
       "Configuring for multi-arch Android build with ABIS: ${CMAKE_ANDROID_ARCH_ABI}"
   )
+
   set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE BOTH)
+  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY BOTH)
+
   if(CMAKE_ANDROID_ARCH_ABI STREQUAL "armeabi-v7a")
     list(PREPEND CMAKE_PREFIX_PATH "${QT_PATH_ANDROID_ABI_armeabi-v7a}")
     list(PREPEND CMAKE_PREFIX_PATH "${CONAN_ARMEABI_V7A_DIR}")
