@@ -55,11 +55,11 @@ jobs:
         run: cmake --preset ci-ninja-android-${{ matrix.arch }}-${{ matrix.build_type }}
 
       - name: Build
-        run: cmake --build build_android
+        run: cmake --build build_android_${{ matrix.arch }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: apk-${{ matrix.build_type }}-${{ matrix.arch }}
-          path: ./build_android/QRLite/android-build/QRLite.apk
+          path: ./build_android_${{ matrix.arch }}/QRLite/android-build/QRLite.apk
           retention-days: 7
