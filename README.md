@@ -75,6 +75,20 @@ Check <https://github.com/amrsa1/Android-Emulator-images> for more details.
 Then start the emulator:
 
 ```
+/opt/android/emulator/emulator -avd test
+``` 
+
+### Uploading and deploying to android play store
+
+To upload the app to the play store, you need to generate a signed bundle or apk.
+
+1. First generate a keystore if you do not have one already: `keytool -genkeypair -alias upload -keyalg RSA -keysize 2048 -validity 9125 -keystore upload-key.jks`
+2. Export the public certificate from the keystore: `keytool -export -rfc -alias upload -file upload_certificate.pem -keystore upload-key.jks`
+3. sign the aab `jarsigner -keystore ./upload-key.jks ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/release/android-build-release.aab upload`
+4. Verify the signature: `jarsigner -verify -verbose -certs ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/release/android-build-release.aab
+
+
+
 
 ## Backlog
 
@@ -88,6 +102,8 @@ Then start the emulator:
 
 ## Tech enhancements
 * Add benchmark for QR code reading
+* Pull prebuilt artifacts from CI for multi-aab
+* clean up multi-abi build process
 
 
 ### Extended features for later releases
