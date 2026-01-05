@@ -93,9 +93,51 @@ jobs:
       - name: Build Android App Bundle
         run: cmake --build build_android_bundle --target aab
 
-      - name: Upload AAB
+      - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: aab-${{ matrix.build_type }}
           path: ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/${{ matrix.build_type }}/android-build-${{ matrix.build_type }}.aab
           retention-days: 7
+  
+  sign-android-bundle:
+    runs-on: ubuntu-24.04
+    container:
+      image: bernedom/qtandroidbuilder:latest
+
+    needs: build-android-bundle
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Download release AAB artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: aab-release
+
+      - name: unzip AAB artifact
+        run: unzip aab-release -d dist/
+        
+
+      - name: Decode upload key
+        run: echo "${{ secrets.ANDROID_UPLOAD_KEY_BASE64 }}" | base64 -d > upload-key.jks
+
+      - name: Sign Android App Bundle
+        run: |
+          jarsigner -keystore ./upload-key.jks ./dist/android-build-release.aab ${secrets.ANDROID_KEY_ALIAS} -storepass "${secrets.ANDROID_KEYSTORE_PASSWORD}" -keypass "${secrets.ANDROID_KEYSTORE_PASSWORD}"
+
+      - name: Verify signature
+        run: |
+          jarsigner -verify -verbose -certs ./dist/android-build-release.aab
+
+      - name: Upload signed AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: signed-aab-release
+          path: ./dist/android-build-release.aab
+          retention-days: 7
+      #TODO upload to playstore if release tag
