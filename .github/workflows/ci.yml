@@ -119,23 +119,17 @@ jobs:
         with:
           name: aab-release
 
-      - name: list
-        run: ls -la
-
-      - name: unzip AAB artifact
-        run: unzip aab-release.zip -d dist/
-        
-
+      
       - name: Decode upload key
         run: echo "${{ secrets.ANDROID_UPLOAD_KEY_BASE64 }}" | base64 -d > upload-key.jks
 
       - name: Sign Android App Bundle
         run: |
-          jarsigner -keystore ./upload-key.jks ./dist/android-build-release.aab ${secrets.ANDROID_KEY_ALIAS} -storepass "${secrets.ANDROID_KEYSTORE_PASSWORD}" -keypass "${secrets.ANDROID_KEYSTORE_PASSWORD}"
+          jarsigner -keystore ./upload-key.jks ./android-build-release.aab ${secrets.ANDROID_KEY_ALIAS} -storepass "${secrets.ANDROID_KEYSTORE_PASSWORD}" -keypass "${secrets.ANDROID_KEYSTORE_PASSWORD}"
 
       - name: Verify signature
         run: |
-          jarsigner -verify -verbose -certs ./dist/android-build-release.aab
+          jarsigner -verify -verbose -certs ./android-build-release.aab
 
       - name: Upload signed AAB artifact
         uses: actions/upload-artifact@v4
