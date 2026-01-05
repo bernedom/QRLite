@@ -125,7 +125,7 @@ jobs:
 
       - name: Sign Android App Bundle
         run: |
-          jarsigner -keystore ./upload-key.jks ./android-build-release.aab ${secrets.ANDROID_KEY_ALIAS} -storepass "${secrets.ANDROID_KEYSTORE_PASSWORD}" -keypass "${secrets.ANDROID_KEYSTORE_PASSWORD}"
+          jarsigner -keystore ./upload-key.jks ./android-build-release.aab ${{ secrets.UPLOAD_KEYSTORE_ALIAS }} -storepass "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" -keypass "${{ secrets.ANDROID_KEYSTORE_PASSWORD}}"
 
       - name: Verify signature
         run: |
