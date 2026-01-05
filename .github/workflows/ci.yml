@@ -119,8 +119,11 @@ jobs:
         with:
           name: aab-release
 
+      - name: list
+        run: ls -la
+
       - name: unzip AAB artifact
-        run: unzip aab-release -d dist/
+        run: unzip aab-release.zip -d dist/
         
 
       - name: Decode upload key
