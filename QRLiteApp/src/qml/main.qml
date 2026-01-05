@@ -62,7 +62,7 @@ Window {
 
             Rectangle {
                 id: scanResultBox
-                width: parent.width - menu.width - spacing
+                width: parent.width - spacing
                 // Height grows with text, up to 1/3 of window height
                 height: Math.min(scanResultText.paintedHeight + spacing, mainWindow.height / 3)
                 color: "transparent"
@@ -93,24 +93,24 @@ Window {
                 }
             }
 
-            Image {
-                id: menu
-                width: 30
-                height: width
-                source: "images/download_button.svg"
-                sourceSize.width: width
-                sourceSize.height: width
+            // Image {
+            //     id: menu
+            //     width: 30
+            //     height: width
+            //     source: "images/download_button.svg"
+            //     sourceSize.width: width
+            //     sourceSize.height: width
 
-                Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                Layout.topMargin: verticalMargin + scanResultBox.border.width
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        codeWriter.saveCodeToFile("yupiduu", picturesFolder + "qrlite_generated_code.png");
-                        statusText.text = "QR code saved to " + picturesFolder + "qrlite_generated_code.png";
-                    }
-                }
-            }
+            //     Layout.alignment: Qt.AlignRight | Qt.AlignTop
+            //     Layout.topMargin: verticalMargin + scanResultBox.border.width
+            //     MouseArea {
+            //         anchors.fill: parent
+            //         onClicked: {
+            //             codeWriter.saveCodeToFile("yupiduu", picturesFolder + "qrlite_generated_code.png");
+            //             statusText.text = "QR code saved to " + picturesFolder + "qrlite_generated_code.png";
+            //         }
+            //     }
+            // }
         }
 
         Rectangle {
