@@ -87,7 +87,11 @@ To upload the app to the play store, you need to generate a signed bundle or apk
 3. sign the aab `jarsigner -keystore ./upload-key.jks ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/release/android-build-release.aab upload`
 4. Verify the signature: `jarsigner -verify -verbose -certs ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/release/android-build-release.aab
 
+For CI/CD store the upload kez as base64 encoded secret and decode it during the workflow run:
 
+```
+base64 -w0 upload-key.jks > upload-key.jks.b64 
+```
 
 
 ## Backlog
