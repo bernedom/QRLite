@@ -121,7 +121,7 @@ jobs:
 
       
       - name: Decode upload key
-        run: echo "${{ secrets.ANDROID_UPLOAD_KEY_BASE64 }}" | base64 -d > upload-key.jks
+        run: echo "${{ secrets.UPLOAD_KEYSTORE_BASE64 }}" | base64 -d > upload-key.jks
 
       - name: Sign Android App Bundle
         run: |
