@@ -135,6 +135,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: signed-aab-release
-          path: ./dist/android-build-release.aab
+          path: ./android-build-release.aab
           retention-days: 7
       #TODO upload to playstore if release tag
