@@ -57,6 +57,12 @@ jobs:
       - name: Build
         run: cmake --build build_android_${{ matrix.arch }}
 
+      - name: sign APK
+        if: matrix.build_type == 'release'
+        run: |
+          echo "${{ secrets.UPLOAD_KEYSTORE_BASE64 }}" | base64 -d > upload-key.jks
+          apksigner sign --ks ./upload-key.jks --ks-pass pass:${{ secrets.UPLOAD_KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.UPLOAD_KEYSTORE_PASSWORD }} ./build_android_${{ matrix.arch }}/QRLiteApp/android-build/QRLite.apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:

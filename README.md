@@ -93,6 +93,13 @@ For CI/CD store the upload kez as base64 encoded secret and decode it during the
 base64 -w0 upload-key.jks > upload-key.jks.b64 
 ```
 
+### Sign the apk
+
+To sign the apk for release, use the following command:
+
+```
+apksigner sign --ks  upload-key.jks ./build_android_armeabi-v7a/QRLiteApp/android-build/QRLite.apk
+```
 
 ## Backlog
 
