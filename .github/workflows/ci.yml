@@ -5,6 +5,8 @@ on:
   pull_request:
     branches:
       - main
+  release:
+    types: [created]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -64,6 +66,7 @@ jobs:
           apksigner sign --ks ./upload-key.jks --ks-pass pass:${{ secrets.UPLOAD_KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.UPLOAD_KEYSTORE_PASSWORD }} ./build_android_${{ matrix.arch }}/QRLiteApp/android-build/QRLite.apk
 
       - name: Upload APK
+        if: matrix.build_type == 'release'
         uses: actions/upload-artifact@v4
         with:
           name: apk-${{ matrix.build_type }}-${{ matrix.arch }}
@@ -100,6 +103,7 @@ jobs:
         run: cmake --build build_android_bundle --target aab
 
       - name: Upload AAB artifact
+        if: matrix.build_type == 'release'
         uses: actions/upload-artifact@v4
         with:
           name: aab-${{ matrix.build_type }}
@@ -108,6 +112,7 @@ jobs:
   
   sign-android-bundle:
     runs-on: ubuntu-24.04
+    if: github.event_name == 'release'
     container:
       image: bernedom/qtandroidbuilder:latest
 
