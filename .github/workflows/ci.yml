@@ -98,7 +98,7 @@ jobs:
       
       
       - name: Configure Android App Bundle
-        run: /opt/Qt/6.6.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-${{ matrix.build_type }}
+        run: /opt/Qt/6.11.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-${{ matrix.build_type }}
       - name: Build Android App Bundle
         run: cmake --build build_android_bundle --target aab
 
