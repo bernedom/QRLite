@@ -116,7 +116,7 @@
                 "android-ndk"
             ],
             "cacheVariables": {
-                "QT_ANDROID_ABIS": "x86_64;arm64-v8a",
+                "QT_ANDROID_ABIS": "arm64-v8a",
                 "QT_ANDROID_BUILD_ALL_ABIS": "OFF"
             },
             "binaryDir": "build_android_bundle"
