@@ -125,7 +125,7 @@
             "name": "Qt-desktop",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/gcc_64/"
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.11.1/gcc_64/"
             },
             "binaryDir": "${sourceDir}/build"
         },
@@ -133,30 +133,30 @@
             "name": "Qt-android-armeabi-v7a",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_armv7/"
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.11.1/android_armv7/"
             },
             "environment": {
-                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+                "QT_HOST_PATH": "/opt/Qt/6.11.1/gcc_64/"
             }
         },
         {
             "name": "Qt-android-arm64-v8a",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_arm64_v8a/"
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.11.1/android_arm64_v8a/"
             },
             "environment": {
-                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+                "QT_HOST_PATH": "/opt/Qt/6.11.1/gcc_64/"
             }
         },
         {
             "name": "Qt-android-x86_64",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_PREFIX_PATH": "/opt/Qt/6.6.1/android_x86_64/"
+                "CMAKE_PREFIX_PATH": "/opt/Qt/6.11.1/android_x86_64/"
             },
             "environment": {
-                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+                "QT_HOST_PATH": "/opt/Qt/6.11.1/gcc_64/"
             }
         },
         {
@@ -167,13 +167,13 @@
                 "CONAN_ARM64_DIR": "${sourceDir}/build_android_arm64-v8a/conan",
                 "CONAN_ARMEABI_V7A_DIR": "${sourceDir}/build_android_armeabi-v7a/conan",
                 "CONAN_X86_64_DIR": "${sourceDir}/build_android_x86_64/conan",
-                "QT_PATH_ANDROID_ABI_armeabi-v7a": "/opt/Qt/6.6.1/android_armv7/",
-                "QT_PATH_ANDROID_ABI_arm64-v8a": "/opt/Qt/6.6.1/android_arm64_v8a/",
-                "QT_PATH_ANDROID_ABI_x86_64": "/opt/Qt/6.6.1/android_x86_64/",
-                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+                "QT_PATH_ANDROID_ABI_armeabi-v7a": "/opt/Qt/6.11.1/android_armv7/",
+                "QT_PATH_ANDROID_ABI_arm64-v8a": "/opt/Qt/6.11.1/android_arm64_v8a/",
+                "QT_PATH_ANDROID_ABI_x86_64": "/opt/Qt/6.11.1/android_x86_64/",
+                "QT_HOST_PATH": "/opt/Qt/6.11.1/gcc_64/"
             },
             "environment": {
-                "QT_HOST_PATH": "/opt/Qt/6.6.1/gcc_64/"
+                "QT_HOST_PATH": "/opt/Qt/6.11.1/gcc_64/"
             }
         },
         {
