@@ -16,7 +16,8 @@ set_target_properties(
   PROPERTIES QT_ANDROID_PACKAGE_NAME "ch.softwarecraft.qrlite"
              QT_ANDROID_APP_ICON "src/qml/images/icon.png"
              QT_ANDROID_PACKAGE_SOURCE_DIR
-             "${CMAKE_CURRENT_SOURCE_DIR}/android")
+             "${CMAKE_CURRENT_SOURCE_DIR}/android"
+             QT_ANDROID_TARGET_SDK_VERSION 35)
 
 # todo set QT_ANDROID_APP_ICON "path to icon" see here for foll properties:
 # https://doc.qt.io/qt-6/cmake-property-reference.html see here for foll
