@@ -20,7 +20,6 @@ if(NOT CONAN_X86_64_DIR)
 endif()
 
 if(ANDROID)
-
   message(
     STATUS
       "Configuring for multi-arch Android build with ABIS: ${CMAKE_ANDROID_ARCH_ABI}"
