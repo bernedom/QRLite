@@ -20,9 +20,6 @@ if(NOT CONAN_X86_64_DIR)
 endif()
 
 if(ANDROID)
-  # TODO: find a way to bump this automatically for releases, or at least make
-  # it a variable that can be set from the command line
-  set(QT_ANDROID_VERSION_CODE 2)
 
   message(
     STATUS

@@ -11,13 +11,16 @@ target_sources(QRLite PRIVATE src/main.cpp src/PermissionChecker.h
                               src/PermissionChecker.cpp src/qml/qml.qrc)
 target_compile_features(QRLite PRIVATE cxx_std_20)
 
+# TODO: find a way to bump the version code automatically for releases, or at
+# least make it a variable that can be set from the command line
+
 set_target_properties(
   QRLite
   PROPERTIES QT_ANDROID_PACKAGE_NAME "ch.softwarecraft.qrlite"
              QT_ANDROID_APP_ICON "src/qml/images/icon.png"
              QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
-             QT_ANDROID_TARGET_SDK_VERSION 36)
+             QT_ANDROID_TARGET_SDK_VERSION 36
+             QT_ANDROID_VERSION_CODE 2)
 
-# todo set QT_ANDROID_APP_ICON "path to icon" see here for foll properties:
 # https://doc.qt.io/qt-6/cmake-property-reference.html see here for foll
 # properties: https://doc.qt.io/qt-6/cmake-property-reference.html
