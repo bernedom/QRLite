@@ -12,12 +12,21 @@ Window {
     width: 640
     height: 640
     title: "QRLite"
+    color: backgroundColor
 
     readonly property int horizontalMargin: 40
     readonly property int verticalMargin: 40
     readonly property int spacing: 20
     readonly property int textMargin: 10
     readonly property url picturesFolder: StandardPaths.writableLocation(StandardPaths.DownloadLocation) + "/QRLite/"
+    property bool darkModeEnabled: false
+    readonly property color backgroundColor: darkModeEnabled ? "#121212" : "#f5f5f5"
+    readonly property color panelColor: darkModeEnabled ? "#1e1e1e" : "#ffffff"
+    readonly property color textColor: darkModeEnabled ? "#f2f2f2" : "#111111"
+    readonly property color secondaryTextColor: darkModeEnabled ? "#c8c8c8" : "#666666"
+    readonly property color borderColor: darkModeEnabled ? "#8f8f8f" : "#111111"
+    readonly property color statusBarColor: darkModeEnabled ? "#2a2a2a" : "#E0E0E0"
+    readonly property color accentColor: darkModeEnabled ? "#7cc7ff" : "#005a9c"
 
     function startCameraIfPermitted(permitted: bool) {
         if (permitted) {
@@ -59,14 +68,15 @@ Window {
             width: parent.width - horizontalMargin * 2
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
+            spacing: mainWindow.spacing
 
             Rectangle {
                 id: scanResultBox
-                width: parent.width - spacing
+                Layout.fillWidth: true
                 // Height grows with text, up to 1/3 of window height
                 height: Math.min(scanResultText.paintedHeight + spacing, mainWindow.height / 3)
-                color: "transparent"
-                border.color: "black"
+                color: mainWindow.panelColor
+                border.color: mainWindow.borderColor
                 border.width: 2
                 radius: 6
                 Layout.alignment: Qt.AlignLeft | Qt.AlignTop
@@ -88,8 +98,43 @@ Window {
                     anchors.right: parent.right
                     anchors.leftMargin: textMargin
                     anchors.rightMargin: textMargin
-                    color: "black"
+                    color: mainWindow.textColor
                     font.pointSize: 16
+                }
+            }
+
+            Rectangle {
+                id: themeToggleContainer
+                color: mainWindow.panelColor
+                border.color: mainWindow.borderColor
+                border.width: 2
+                radius: 6
+                Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                Layout.topMargin: verticalMargin
+                implicitWidth: themeToggleLayout.implicitWidth + textMargin * 2
+                implicitHeight: themeToggleLayout.implicitHeight + textMargin * 2
+
+                RowLayout {
+                    id: themeToggleLayout
+                    anchors.fill: parent
+                    anchors.margins: textMargin
+                    spacing: 8
+
+                    Label {
+                        text: "Dark"
+                        color: mainWindow.textColor
+                    }
+
+                    Switch {
+                        id: darkModeSwitch
+                        checked: mainWindow.darkModeEnabled
+                        onToggled: mainWindow.darkModeEnabled = checked
+
+                        palette.windowText: mainWindow.textColor
+                        palette.text: mainWindow.textColor
+                        palette.buttonText: mainWindow.textColor
+                        palette.highlight: mainWindow.accentColor
+                    }
                 }
             }
 
@@ -126,12 +171,15 @@ Window {
                 id: permissionCheck
                 anchors.fill: parent
                 visible: permissionChecker && permissionChecker.cameraCheckPending
+                textColor: mainWindow.secondaryTextColor
             }
 
             PermissionDenied {
                 id: permissionDenied
                 anchors.fill: parent
                 visible: permissionChecker && permissionChecker.cameraPermissionGranted === false && !permissionChecker.cameraCheckPending
+                backgroundColor: mainWindow.panelColor
+                textColor: "#ff7b72"
             }
 
             Item {
@@ -166,7 +214,7 @@ Window {
             id: statusBar
             width: parent.width
             height: 24
-            color: "#E0E0E0"
+            color: mainWindow.statusBarColor
             anchors.bottom: parent.bottom
             anchors.bottomMargin: visible ? 0 : -height
             visible: statusText.text !== ""
@@ -184,7 +232,7 @@ Window {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 10
-                color: "black"
+                color: mainWindow.textColor
                 font.pointSize: 8
 
                 onTextChanged: function (text) {

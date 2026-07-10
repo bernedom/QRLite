@@ -5,6 +5,7 @@ Rectangle {
     width: parent.width
     height: parent.height
     color: "transparent"
+    property color textColor: "gray"
 
     Timer {
         id: showTimer
@@ -18,7 +19,7 @@ Rectangle {
         id: permissionText
         visible: false
         text: "Checking camera permissions. Please grant the camera permission if prompted."
-        color: "gray"
+        color: permissionCheck.textColor
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
         anchors.centerIn: parent
