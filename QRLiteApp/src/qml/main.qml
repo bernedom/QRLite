@@ -34,8 +34,19 @@ Window {
         }
     }
 
+    Settings {
+        id: appSettings
+        category: "Appearance"
+        property bool darkModeEnabled: false
+    }
+
     Component.onCompleted: {
+        darkModeEnabled = appSettings.darkModeEnabled;
         permissionChecker.cameraPermissionChanged.connect(startCameraIfPermitted);
+    }
+
+    onDarkModeEnabledChanged: {
+        appSettings.darkModeEnabled = darkModeEnabled;
     }
 
     CodeWriter {
