@@ -20,7 +20,7 @@ set_target_properties(
              QT_ANDROID_APP_ICON "src/qml/images/icon.png"
              QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
              QT_ANDROID_TARGET_SDK_VERSION 36
-             QT_ANDROID_VERSION_CODE 3)
+             QT_ANDROID_VERSION_CODE 4)
 
 # https://doc.qt.io/qt-6/cmake-property-reference.html see here for foll
 # properties: https://doc.qt.io/qt-6/cmake-property-reference.html

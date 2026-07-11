@@ -146,7 +146,6 @@ apksigner sign --ks  upload-key.jks ./build_android_armeabi-v7a/QRLiteApp/androi
 ## Tech enhancements
 * Add benchmark for QR code reading
 * Pull prebuilt artifacts from CI for multi-aab
-* clean up multi-abi build process
 
 
 ### Extended features for later releases
