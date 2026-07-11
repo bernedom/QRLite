@@ -11,5 +11,6 @@
         <file>images/app_icon.png</file>
         <file>images/burger_menu.svg</file>
         <file>images/download_button.svg</file>
+        <file>images/settings-cogwheel.svg</file>
     </qresource>
 </RCC>

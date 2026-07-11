@@ -201,15 +201,23 @@ Window {
                 anchors.rightMargin: 14
                 spacing: 12
 
-                Rectangle {
-                    id: settingsPlaceholderButton
-                    width: 32
-                    height: 32
-                    radius: 6
-                    color: "#d62828"
-                    border.color: "#8b0000"
-                    border.width: 1
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                ToolButton {
+                    id: settingsButton
+                    width: 36
+                    height: 36
+                    icon.source: "qrc:/images/settings-cogwheel.svg"
+                    icon.width: 24
+                    icon.height: 24
                     Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+                    background: Rectangle {
+                        color: "transparent"
+                        border.width: 0
+                    }
                 }
             }
         }
