@@ -22,7 +22,7 @@ Rectangle {
         spacing: textMargin * 1.5
 
         Label {
-            text: "Settings"
+            text: "QRLite Settings"
             color: root.textColor
             font.pointSize: 20
             font.bold: true
