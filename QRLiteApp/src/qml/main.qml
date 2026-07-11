@@ -28,6 +28,7 @@ Window {
     readonly property color statusBarColor: darkModeEnabled ? "#2a2a2a" : "#E0E0E0"
     readonly property color accentColor: darkModeEnabled ? "#7cc7ff" : "#005a9c"
     readonly property int bottomBarHeight: 56
+    property bool settingsPageVisible: false
 
     function startCameraIfPermitted(permitted: bool) {
         if (permitted) {
@@ -77,6 +78,7 @@ Window {
 
         RowLayout {
             id: topLayout
+            visible: !mainWindow.settingsPageVisible
             width: parent.width - horizontalMargin * 2
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
@@ -137,6 +139,7 @@ Window {
 
         Rectangle {
             id: cameraView
+            visible: !mainWindow.settingsPageVisible
             width: parent.width - horizontalMargin * 2
             height: parent.height - scanResultBox.height - verticalMargin * 2 - spacing
             color: "transparent"
@@ -187,6 +190,26 @@ Window {
                 }
             }
         }
+
+        Settings {
+            id: settingsPage
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: statusBar.top
+            visible: mainWindow.settingsPageVisible
+
+            textMargin: mainWindow.textMargin
+            backgroundColor: mainWindow.backgroundColor
+            panelColor: mainWindow.panelColor
+            textColor: mainWindow.textColor
+            secondaryTextColor: mainWindow.secondaryTextColor
+            borderColor: mainWindow.borderColor
+            accentColor: mainWindow.accentColor
+            darkModeEnabled: mainWindow.darkModeEnabled
+            onDarkModeEnabledChanged: mainWindow.darkModeEnabled = darkModeEnabled
+        }
+
         Rectangle {
             id: bottomBar
             width: parent.width
@@ -213,6 +236,7 @@ Window {
                     icon.width: 24
                     icon.height: 24
                     Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                    onClicked: mainWindow.settingsPageVisible = !mainWindow.settingsPageVisible
 
                     background: Rectangle {
                         color: "transparent"
