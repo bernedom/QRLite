@@ -235,6 +235,7 @@ Window {
                     icon.source: "qrc:/images/settings-cogwheel.svg"
                     icon.width: 24
                     icon.height: 24
+                    icon.color: mainWindow.textColor
                     Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                     onClicked: mainWindow.settingsPageVisible = !mainWindow.settingsPageVisible
 
