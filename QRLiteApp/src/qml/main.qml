@@ -28,6 +28,9 @@ Window {
     readonly property color statusBarColor: darkModeEnabled ? "#2a2a2a" : "#E0E0E0"
     readonly property color accentColor: darkModeEnabled ? "#7cc7ff" : "#005a9c"
     readonly property int bottomBarHeight: 56
+    readonly property bool isAndroid: Qt.platform.os === "android"
+    readonly property bool isPortrait: height > width
+    readonly property int androidBottomInset: isAndroid && isPortrait ? Math.max(0, Screen.height - Screen.desktopAvailableHeight) : 0
     property bool settingsPageVisible: false
 
     function startCameraIfPermitted(permitted: bool) {
@@ -145,7 +148,7 @@ Window {
             height: parent.height - scanResultBox.height - verticalMargin * 2 - spacing
             color: "transparent"
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: spacing + mainWindow.bottomBarHeight
+            anchors.bottomMargin: spacing + mainWindow.bottomBarHeight + mainWindow.androidBottomInset
             anchors.horizontalCenter: parent.horizontalCenter
 
             PermissionCheck {
@@ -216,6 +219,7 @@ Window {
             width: parent.width
             height: mainWindow.bottomBarHeight
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: mainWindow.androidBottomInset
             color: "transparent"
             border.width: 0
 
