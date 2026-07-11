@@ -192,37 +192,14 @@ Window {
             width: parent.width
             height: mainWindow.bottomBarHeight
             anchors.bottom: parent.bottom
-            color: mainWindow.panelColor
-            border.color: mainWindow.borderColor
-            border.width: 1
+            color: "transparent"
+            border.width: 0
 
             RowLayout {
                 anchors.fill: parent
                 anchors.leftMargin: 14
                 anchors.rightMargin: 14
                 spacing: 12
-
-                Rectangle {
-                    width: 28
-                    height: 28
-                    radius: 4
-                    color: Qt.rgba(0.5, 0.5, 0.5, 0.35)
-                    border.color: mainWindow.borderColor
-                    border.width: 1
-                }
-
-                Rectangle {
-                    width: 28
-                    height: 28
-                    radius: 4
-                    color: Qt.rgba(0.5, 0.5, 0.5, 0.35)
-                    border.color: mainWindow.borderColor
-                    border.width: 1
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                }
 
                 Rectangle {
                     id: settingsPlaceholderButton
