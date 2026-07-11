@@ -100,8 +100,9 @@ Window {
                     id: scanResultText
                     objectName: "scanResultText"
                     text: ""
-                    textFormat: Text.RichText
+                    textFormat: Text.StyledText
                     wrapMode: Text.Wrap
+                    linkColor: mainWindow.accentColor
                     onLinkActivated: function (link) {
                         Qt.openUrlExternally(link);
                     }
