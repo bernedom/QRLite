@@ -3,7 +3,7 @@ import QtQuick.Window
 import QtMultimedia
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtCore as Core
+import QtCore
 import QRLite 1.0
 
 Window {
@@ -36,7 +36,7 @@ Window {
         }
     }
 
-    Core.Settings {
+    Settings {
         id: appSettings
         category: "Appearance"
         property bool darkModeEnabled: false
@@ -192,7 +192,7 @@ Window {
             }
         }
 
-        Settings {
+        QRLiteSettings {
             id: settingsPage
             anchors.top: parent.top
             anchors.left: parent.left

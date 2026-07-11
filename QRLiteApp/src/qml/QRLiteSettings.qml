@@ -71,13 +71,6 @@ Rectangle {
             }
         }
 
-        Label {
-            Layout.fillWidth: true
-            text: "More settings will be added here."
-            color: root.secondaryTextColor
-            horizontalAlignment: Text.AlignHCenter
-        }
-
         Item {
             Layout.fillHeight: true
         }
