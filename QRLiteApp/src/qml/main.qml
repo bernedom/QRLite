@@ -3,7 +3,7 @@ import QtQuick.Window
 import QtMultimedia
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtCore
+import QtCore as Core
 import QRLite 1.0
 
 Window {
@@ -34,7 +34,7 @@ Window {
         }
     }
 
-    Settings {
+    Core.Settings {
         id: appSettings
         category: "Appearance"
         property bool darkModeEnabled: false
@@ -114,39 +114,17 @@ Window {
                 }
             }
 
-            Rectangle {
+            Settings {
                 id: themeToggleContainer
-                color: mainWindow.panelColor
-                border.color: mainWindow.borderColor
-                border.width: 2
-                radius: 6
                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
                 Layout.topMargin: verticalMargin
-                implicitWidth: themeToggleLayout.implicitWidth + textMargin * 2
-                implicitHeight: themeToggleLayout.implicitHeight + textMargin * 2
-
-                RowLayout {
-                    id: themeToggleLayout
-                    anchors.fill: parent
-                    anchors.margins: textMargin
-                    spacing: 8
-
-                    Label {
-                        text: "Dark"
-                        color: mainWindow.textColor
-                    }
-
-                    Switch {
-                        id: darkModeSwitch
-                        checked: mainWindow.darkModeEnabled
-                        onToggled: mainWindow.darkModeEnabled = checked
-
-                        palette.windowText: mainWindow.textColor
-                        palette.text: mainWindow.textColor
-                        palette.buttonText: mainWindow.textColor
-                        palette.highlight: mainWindow.accentColor
-                    }
-                }
+                textMargin: mainWindow.textMargin
+                panelColor: mainWindow.panelColor
+                textColor: mainWindow.textColor
+                borderColor: mainWindow.borderColor
+                accentColor: mainWindow.accentColor
+                darkModeEnabled: mainWindow.darkModeEnabled
+                onDarkModeEnabledChanged: mainWindow.darkModeEnabled = darkModeEnabled
             }
 
             // Image {

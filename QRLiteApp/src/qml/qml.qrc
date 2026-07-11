@@ -3,6 +3,7 @@
         <file>main.qml</file>
         <file>PermissionCheck.qml</file>
         <file>PermissionDenied.qml</file>
+        <file>Settings.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>images/test.png</file>
