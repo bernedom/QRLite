@@ -27,6 +27,7 @@ Window {
     readonly property color borderColor: darkModeEnabled ? "#8f8f8f" : "#111111"
     readonly property color statusBarColor: darkModeEnabled ? "#2a2a2a" : "#E0E0E0"
     readonly property color accentColor: darkModeEnabled ? "#7cc7ff" : "#005a9c"
+    readonly property int bottomBarHeight: 56
 
     function startCameraIfPermitted(permitted: bool) {
         if (permitted) {
@@ -114,19 +115,6 @@ Window {
                 }
             }
 
-            Settings {
-                id: themeToggleContainer
-                Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                Layout.topMargin: verticalMargin
-                textMargin: mainWindow.textMargin
-                panelColor: mainWindow.panelColor
-                textColor: mainWindow.textColor
-                borderColor: mainWindow.borderColor
-                accentColor: mainWindow.accentColor
-                darkModeEnabled: mainWindow.darkModeEnabled
-                onDarkModeEnabledChanged: mainWindow.darkModeEnabled = darkModeEnabled
-            }
-
             // Image {
             //     id: menu
             //     width: 30
@@ -153,7 +141,7 @@ Window {
             height: parent.height - scanResultBox.height - verticalMargin * 2 - spacing
             color: "transparent"
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: spacing
+            anchors.bottomMargin: spacing + mainWindow.bottomBarHeight
             anchors.horizontalCenter: parent.horizontalCenter
 
             PermissionCheck {
@@ -200,11 +188,61 @@ Window {
             }
         }
         Rectangle {
+            id: bottomBar
+            width: parent.width
+            height: mainWindow.bottomBarHeight
+            anchors.bottom: parent.bottom
+            color: mainWindow.panelColor
+            border.color: mainWindow.borderColor
+            border.width: 1
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: 14
+                anchors.rightMargin: 14
+                spacing: 12
+
+                Rectangle {
+                    width: 28
+                    height: 28
+                    radius: 4
+                    color: Qt.rgba(0.5, 0.5, 0.5, 0.35)
+                    border.color: mainWindow.borderColor
+                    border.width: 1
+                }
+
+                Rectangle {
+                    width: 28
+                    height: 28
+                    radius: 4
+                    color: Qt.rgba(0.5, 0.5, 0.5, 0.35)
+                    border.color: mainWindow.borderColor
+                    border.width: 1
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Rectangle {
+                    id: settingsPlaceholderButton
+                    width: 32
+                    height: 32
+                    radius: 6
+                    color: "#d62828"
+                    border.color: "#8b0000"
+                    border.width: 1
+                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                }
+            }
+        }
+
+        Rectangle {
             id: statusBar
             width: parent.width
             height: 24
             color: mainWindow.statusBarColor
-            anchors.bottom: parent.bottom
+            anchors.bottom: bottomBar.top
             anchors.bottomMargin: visible ? 0 : -height
             visible: statusText.text !== ""
 
