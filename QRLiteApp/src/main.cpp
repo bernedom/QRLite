@@ -44,6 +44,8 @@ int main(int argc, char **argv) {
   }
 
   QGuiApplication app(argc, argv);
+  app.setOrganizationName("SoftwareCraft GmbH");
+  app.setOrganizationDomain("softwarecraft.ch");
   app.setApplicationName("QRLite");
   app.setWindowIcon(QIcon(":/images/app_icon.png"));
 
