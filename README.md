@@ -5,12 +5,32 @@ This app is built in with C++ using the Qt framework.
 
 ## Features
 
+## Development environment
+
+This project ships a [devcontainer](https://containers.dev/) configuration (`.devcontainer/devcontainer.json`).
+The container is based on the [`bernedom/qtandroidbuilder`](https://hub.docker.com/r/bernedom/qtandroidbuilder) image, which comes pre-installed with Qt 6, the Android NDK & SDK, Conan 2, CMake, and Ninja.
+
+Opening the project in VS Code with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) is the recommended way to get a fully working build environment without any manual setup.
+
 ## Build Requirements
 
 * conan2 as dependency manager
 * cmake 3.24 or newer
 * ninja (if using the ninja generator)
 * Android NDK & SDK (if building for android)
+
+> **Note – git submodules:** This project uses `cmake-conan` as a git submodule.
+> When cloning, make sure to initialise it:
+>
+> ```
+> git clone --recurse-submodules <repo-url>
+> ```
+>
+> Or, if you have already cloned without submodules:
+>
+> ```
+> git submodule update --init --recursive
+> ```
 
 Conan Profiles supported in the devcontainer:
 
@@ -48,18 +68,30 @@ This project uses conan as a dependency provider for CMake. Please refer to the 
 
 ### Build instructions
 
-Use `cmake --list-presets` to see available build presets.
+Use `cmake --list-presets` to see all available build presets.
+
+**Desktop (Linux):**
 
 ```
-cmake --preset Ninja-Debug
-cmake --build --preset Ninja-Debug
-``` 
+cmake --preset ci-ninja-desktop-debug
+cmake --build build
+```
 
-To build the android apk built the target `apk`:
+**Android (single ABI, e.g. arm64-v8a):**
 
 ```
-cmake --build --preset Ninja-Debug --target apk
+cmake --preset ci-ninja-android-arm64-v8a-debug
+cmake --build build_android_arm64-v8a
 ```
+
+To build the Android APK explicitly, pass the `apk` target:
+
+```
+cmake --build build_android_arm64-v8a --target apk
+```
+
+Available Android ABI presets: `armeabi-v7a`, `arm64-v8a`, `x86_64`.
+Replace `debug` with `release` for release builds.
 
 ### Running the android emulator
 
@@ -136,6 +168,6 @@ apksigner sign --ks  upload-key.jks ./build_android_armeabi-v7a/QRLiteApp/androi
     2. cmake --build ./build_android_arm64-v8a
     3. cmake --build ./build_android_x86_64
 2. collect all archs bundle in debug mode using qt-cmake
-    /opt/Qt/6.6.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-debug
+    /opt/Qt/6.11.1/android_x86_64/bin/qt-cmake --preset ci-ninja-android-all-archs-debug
 3. build using cmake
 
