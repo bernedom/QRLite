@@ -95,11 +95,13 @@ Replace `debug` with `release` for release builds.
 
 ### Running the android emulator
 
+Currently the emulator does not run inside the devcontainer because of missing KVM support. You can run the emulator on the host machine and connect to it from the devcontainer. To do so, you need to install the Android SDK and NDK on your host machine.
+
 Install the system images for the android emulator using the sdkmanager then create an AVD using the avdmanager:
 
 ```
 sudo /opt/android/cmdline-tools/cmdline-tools/bin/sdkmanager --install "system-images;android-33;google_apis;x86_64"
-avdmanager create avd -n test -k "system-images;android-33;google_apis;x86_64"
+/opt/android/cmdline-tools/cmdline-tools/bin/avdmanager create avd -n test -k "system-images;android-33;google_apis;x86_64"
 ```
 
 Check <https://github.com/amrsa1/Android-Emulator-images> for more details.
@@ -108,6 +110,12 @@ Then start the emulator:
 
 ```
 /opt/android/emulator/emulator -avd test
+``` 
+
+Uploading the APK to the emulator can be done using adb:
+
+```
+/opt/android/platform-tools/adb install -r ./build_android_x86_64/QRLiteApp/android-build/QRLite.apk
 ``` 
 
 ### Uploading and deploying to android play store
@@ -136,6 +144,7 @@ apksigner sign --ks  upload-key.jks ./build_android_armeabi-v7a/QRLiteApp/androi
 ## Backlog
 
 * If permissions for camera are not (yet) granted, do not initialized camera
+* Fix Icon to be round
 
 * Functionality to read QR codes from images
     * Select from gallery
