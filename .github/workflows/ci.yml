@@ -69,7 +69,7 @@ jobs:
         if: matrix.build_type == 'release'
         uses: actions/upload-artifact@v4
         with:
-          name: apk-${{ matrix.build_type }}-${{ matrix.arch }}
+          name: qrlite-apk-${{ matrix.build_type }}-${{ matrix.arch }}
           path: ./build_android_${{ matrix.arch }}/QRLiteApp/android-build/QRLite.apk
           retention-days: 7
 
@@ -106,7 +106,7 @@ jobs:
         if: matrix.build_type == 'release'
         uses: actions/upload-artifact@v4
         with:
-          name: aab-${{ matrix.build_type }}
+          name: qrlite-aab-${{ matrix.build_type }}
           path: ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/${{ matrix.build_type }}/android-build-${{ matrix.build_type }}.aab
           retention-days: 7
   
@@ -145,7 +145,7 @@ jobs:
       - name: Upload signed AAB artifact
         uses: actions/upload-artifact@v7
         with:
-          name: signed-aab-release
+          name: qrlite-signed-aab-release
           path: ./android-build-release.aab
           retention-days: 7
       #TODO upload to playstore if release tag
