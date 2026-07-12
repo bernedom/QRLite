@@ -67,7 +67,7 @@ jobs:
 
       - name: Upload APK
         if: matrix.build_type == 'release'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: qrlite-apk-${{ matrix.build_type }}-${{ matrix.arch }}
           path: ./build_android_${{ matrix.arch }}/QRLiteApp/android-build/QRLite.apk
@@ -104,7 +104,7 @@ jobs:
 
       - name: Upload AAB artifact
         if: matrix.build_type == 'release'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: qrlite-aab-${{ matrix.build_type }}
           path: ./build_android_bundle/QRLiteApp/android-build/build/outputs/bundle/${{ matrix.build_type }}/android-build-${{ matrix.build_type }}.aab
