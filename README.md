@@ -135,7 +135,6 @@ apksigner sign --ks  upload-key.jks ./build_android_armeabi-v7a/QRLiteApp/androi
 
 ## Backlog
 
-* Configure AndroidManifest.xml for correct permissions
 * If permissions for camera are not (yet) granted, do not initialized camera
 
 * Functionality to read QR codes from images
