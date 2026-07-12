@@ -128,7 +128,7 @@ jobs:
       - name: Download release AAB artifact
         uses: actions/download-artifact@v8
         with:
-          name: aab-release
+          name: qrlite-aab-release
 
       
       - name: Decode upload key
