@@ -121,24 +121,27 @@ Window {
                 }
             }
 
-            // Image {
-            //     id: menu
-            //     width: 30
-            //     height: width
-            //     source: "images/download_button.svg"
-            //     sourceSize.width: width
-            //     sourceSize.height: width
+            ToolButton {
+                id: copyToClipboardButton
+                width: 36
+                height: 36
+                icon.source: "qrc:/images/copy_icon.svg"
+                icon.width: 24
+                icon.height: 24
+                icon.color: mainWindow.textColor
+                Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                Layout.topMargin: verticalMargin + scanResultBox.border.width
 
-            //     Layout.alignment: Qt.AlignRight | Qt.AlignTop
-            //     Layout.topMargin: verticalMargin + scanResultBox.border.width
-            //     MouseArea {
-            //         anchors.fill: parent
-            //         onClicked: {
-            //             codeWriter.saveCodeToFile("yupiduu", picturesFolder + "qrlite_generated_code.png");
-            //             statusText.text = "QR code saved to " + picturesFolder + "qrlite_generated_code.png";
-            //         }
-            //     }
-            // }
+                onClicked: {
+                    clipboardBridge.setText(scanResultText.text);
+                    statusText.text = "Copied to clipboard";
+                }
+
+                background: Rectangle {
+                    color: "transparent"
+                    border.width: 0
+                }
+            }
         }
 
         Rectangle {
@@ -228,6 +231,46 @@ Window {
                 anchors.leftMargin: 14
                 anchors.rightMargin: 14
                 spacing: 12
+
+                ToolButton {
+                    id: saveButton
+                    width: 36
+                    height: 36
+                    icon.source: "qrc:/images/download_icon.svg"
+                    icon.width: 24
+                    icon.height: 24
+                    icon.color: mainWindow.textColor
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    onClicked: {
+                        codeWriter.saveCodeToFile(scanResultText.text, picturesFolder + "qrlite_generated_code.png");
+                        mainWindow.statusText.text = "QR code saved to " + picturesFolder + "qrlite_generated_code.png";
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                        border.width: 0
+                    }
+                }
+
+                ToolButton {
+                    id: uploadButton
+                    width: 36
+                    height: 36
+                    icon.source: "qrc:/images/upload_icon.svg"
+                    icon.width: 24
+                    icon.height: 24
+                    icon.color: mainWindow.textColor
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    onClicked: {
+                        clipboardBridge.setText(scanResultText.text);
+                        mainWindow.statusText.text = "Copied to clipboard";
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                        border.width: 0
+                    }
+                }
 
                 Item {
                     Layout.fillWidth: true

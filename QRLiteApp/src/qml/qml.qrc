@@ -10,7 +10,9 @@
         <file>images/valid_qr_code_qrlite.png</file>
         <file>images/app_icon.png</file>
         <file>images/burger_menu.svg</file>
-        <file>images/download_button.svg</file>
+        <file>images/download_icon.svg</file>
+        <file>images/upload_icon.svg</file>
+        <file>images/copy_icon.svg</file>
         <file>images/settings-cogwheel.svg</file>
     </qresource>
 </RCC>

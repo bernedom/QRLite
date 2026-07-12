@@ -21,6 +21,7 @@
 #include <qpalette.h>
 
 #include "PermissionChecker.h"
+#include "ClipboardBridge.h"
 #include "QRLite/CodeWriter.h"
 
 int main(int argc, char **argv) {
@@ -57,8 +58,11 @@ int main(int argc, char **argv) {
   QQmlApplicationEngine qmlEngine;
 
   QRLite::PermissionChecker permissionChecker;
+  QRLite::ClipboardBridge clipboardBridge;
   qmlEngine.rootContext()->setContextProperty("permissionChecker",
                                               &permissionChecker);
+  qmlEngine.rootContext()->setContextProperty("clipboardBridge",
+                                              &clipboardBridge);
 
   const QList<QCameraDevice> cameras = QMediaDevices::videoInputs();
   for (const QCameraDevice &cameraDevice : cameras) {
