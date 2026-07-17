@@ -30,7 +30,7 @@ Window {
     readonly property int bottomBarHeight: 56
     readonly property bool isAndroid: Qt.platform.os === "android"
     readonly property bool isPortrait: height > width
-    readonly property int androidBottomInset: isAndroid && isPortrait ? Math.max(0, Screen.height - Screen.desktopAvailableHeight) : 0
+    readonly property int androidBottomInset: mainWindow.SafeArea.margins.bottom
     property bool settingsPageVisible: false
 
     function startCameraIfPermitted(permitted: bool) {
@@ -136,7 +136,6 @@ Window {
                     clipboardBridge.setText(scanResultText.text);
                     statusText.text = "Copied to clipboard";
                 }
-
                 background: Rectangle {
                     color: "transparent"
                     border.width: 0
