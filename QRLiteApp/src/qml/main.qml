@@ -242,7 +242,7 @@ Window {
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     onClicked: {
                         codeWriter.saveCodeToFile(scanResultText.text, picturesFolder + "qrlite_generated_code.png");
-                        mainWindow.statusText.text = "QR code saved to " + picturesFolder + "qrlite_generated_code.png";
+                        statusText.text = "QR code saved to " + picturesFolder + "qrlite_generated_code.png";
                     }
 
                     background: Rectangle {
@@ -262,7 +262,7 @@ Window {
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     onClicked: {
                         clipboardBridge.setText(scanResultText.text);
-                        mainWindow.statusText.text = "Copied to clipboard";
+                        statusText.text = "Copied to clipboard";
                     }
 
                     background: Rectangle {
