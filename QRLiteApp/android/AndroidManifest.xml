@@ -6,6 +6,7 @@
     android:versionName="-- %%INSERT_VERSION_NAME%% --"
     android:icon="@drawable/icon">
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"  /> -->
     <!-- %%INSERT_FEATURES -->
     <supports-screens
