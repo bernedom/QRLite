@@ -29,7 +29,6 @@ Window {
     readonly property color accentColor: darkModeEnabled ? "#7cc7ff" : "#005a9c"
     readonly property int bottomBarHeight: 56
     readonly property bool isAndroid: Qt.platform.os === "android"
-    readonly property bool isPortrait: height > width
     readonly property int androidBottomInset: mainWindow.SafeArea.margins.bottom
     property bool settingsPageVisible: false
 
