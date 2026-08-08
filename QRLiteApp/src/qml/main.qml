@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtMultimedia
 import QtQuick.Controls
+import QtQuick.Dialogs
 import QtQuick.Layouts
 import QtCore
 import QRLite 1.0
@@ -55,6 +56,16 @@ Window {
 
     CodeWriter {
         id: codeWriter
+    }
+
+    FileDialog {
+        id: imageFileDialog
+        fileMode: FileDialog.OpenFile
+        nameFilters: ["Image files (*.jpg *.jpeg)"]
+
+        onAccepted: {
+            console.log("Selected image:", selectedFile);
+        }
     }
 
     CodeReader {
@@ -261,7 +272,7 @@ Window {
                     visible: true
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     onClicked: {
-                        statusText.text = "To be implemented: open image picker and scan image";
+                        imageFileDialog.open();
                     }
 
                     background: Rectangle {
