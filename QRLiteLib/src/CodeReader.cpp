@@ -46,4 +46,26 @@ void CodeReader::onVideoFrameChanged(const QVideoFrame &frame) {
     }
   });
 }
+
+void CodeReader::scanImage(const QUrl &fileUrl) {
+  const QString path =
+      fileUrl.isLocalFile() ? fileUrl.toLocalFile() : fileUrl.toString();
+
+  _threadPool.start([path, this]() {
+    QRLite::Scanner scanner;
+    const auto result = scanner.scan(path);
+
+    if (!result.has_value()) {
+      emit imageScanFailed(result.error().message);
+      return;
+    }
+
+    const auto parsedResult = CodeParser::parse(result.value());
+    if (parsedResult.has_value()) {
+      emit validCodeDetected(parsedResult.value());
+    } else {
+      emit imageScanFailed(parsedResult.error());
+    }
+  });
+}
 } // namespace QRLite

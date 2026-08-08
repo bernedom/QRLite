@@ -61,10 +61,10 @@ Window {
     FileDialog {
         id: imageFileDialog
         fileMode: FileDialog.OpenFile
-        nameFilters: ["Image files (*.jpg *.jpeg)"]
+        nameFilters: ["Image files (*.jpg *.jpeg *.png)"]
 
         onAccepted: {
-            console.log("Selected image:", selectedFile);
+            codeReader.scanImage(selectedFile);
         }
     }
 
@@ -74,6 +74,10 @@ Window {
 
         onValidCodeDetected: code => {
             scanResultText.text = code;
+        }
+
+        onImageScanFailed: message => {
+            statusText.text = message;
         }
     }
 
