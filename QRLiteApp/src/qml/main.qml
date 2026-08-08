@@ -258,11 +258,10 @@ Window {
                     icon.width: 24
                     icon.height: 24
                     icon.color: mainWindow.textColor
-                    visible: false
+                    visible: true
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     onClicked: {
-                        clipboardBridge.setText(scanResultText.text);
-                        statusText.text = "Copied to clipboard";
+                        statusText.text = "To be implemented: open image picker and scan image";
                     }
 
                     background: Rectangle {
