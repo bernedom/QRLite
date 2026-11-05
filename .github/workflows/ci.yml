@@ -9,7 +9,7 @@ on:
     types: [created]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{github.triggering_actor}}-${{ github.ref }}
   cancel-in-progress: true
 
 
