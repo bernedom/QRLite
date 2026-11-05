@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Dominik Berner
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 cmake_minimum_required(VERSION 3.21)
 
 set(CMAKE_AUTOMOC ON)

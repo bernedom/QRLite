@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2026 Dominik Berner
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 cmake --preset ci-ninja-android-armeabi-v7a-debug
 cmake --preset ci-ninja-android-arm64-v8a-debug
 cmake --preset ci-ninja-android-x86_64-debug
