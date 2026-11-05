@@ -1,5 +1,5 @@
 # QRLite
-An android app to make collages from pictures - No internet connection required, no ads, no machine learning, no tracking, no bloatware.
+An android app scan QR and barcodes from your device camera in real-time without the need for an internet connection - No ads, no machine learning, no tracking, no bloatware.
 
 This app is built in with C++ using the Qt framework.
 
