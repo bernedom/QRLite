@@ -166,4 +166,4 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: ch.softwarecraft.qrlite
           releaseFiles: android-build-release.aab
-          tracks: qa,beta
+          tracks: alpha,beta
